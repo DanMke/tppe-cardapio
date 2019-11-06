@@ -46,8 +46,8 @@ public class Alimento {
 
 	public void setNome(String nome) throws DadoVazioException {
 		
-		if(nome.equals("") || nome.equals(null)) {
-			throw new DadoVazioException("Campo medida não pode ser vazio");
+		if(nome.equals("") || nome == null) {
+			throw new DadoVazioException("Campo nome não pode ser vazio");
 		}
 		
 		this.nome = nome;
@@ -59,7 +59,7 @@ public class Alimento {
 	
 	public void setMedida(String medida) throws DadoVazioException {
 		
-		if(medida.equals("") || medida.equals(null)) {
+		if(medida.equals("") || medida == null) {
 			throw new DadoVazioException("Campo medida não pode ser vazio");
 		}
 		
@@ -72,7 +72,7 @@ public class Alimento {
 	
 	public void setGrupo(Grupo grupo) throws DadoVazioException {
 		
-		if(grupo.equals(null)) {
+		if(grupo == null) {
 			throw new DadoVazioException("Campo grupo não pode ser vazio");
 		}
 	

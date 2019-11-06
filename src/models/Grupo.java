@@ -44,7 +44,7 @@ public class Grupo {
 
 	public void setId(Integer id) throws DadoVazioException {
 		
-		if(id.equals(null)) {
+		if(id == null) {
 			throw new  DadoVazioException("Campo id não pode ser vazio");
 		}
 		
@@ -57,8 +57,8 @@ public class Grupo {
 
 	public void setNome(String nome) throws DadoVazioException {
 		
-		if(nome.equals(null) || nome.equals("")) {
-			throw new  DadoVazioException("Campo id não pode ser vazio");
+		if(nome == null || nome.equals("")) {
+			throw new  DadoVazioException("Campo nome não pode ser vazio");
 		}
 		
 		this.nome = nome;

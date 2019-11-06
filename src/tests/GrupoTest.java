@@ -2,9 +2,13 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import exceptions.DadoIncompletoException;
+import exceptions.DadoVazioException;
+import models.Alimento;
 import models.Grupo;
 
 public class GrupoTest {
@@ -29,5 +33,38 @@ public class GrupoTest {
 		
 		g = Grupo.obterGrupo(id, nome);
 	}
+	
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+	
+    @Test
+    public void testDadoVazioIdGrupo() throws DadoIncompletoException, DadoVazioException {
+
+    	Integer id = 1;
+    	String nome = "Verde"; 
+    	
+    	thrown.expect(DadoVazioException.class);
+        thrown.expectMessage("Campo id não pode ser vazio");
+    	
+    	Grupo grupo = new Grupo(id, nome);
+    	
+        grupo.setId(null);
+        
+    }
+    
+    @Test
+    public void testDadoVazioNomeGrupo() throws DadoIncompletoException, DadoVazioException {
+
+    	Integer id = 2;
+    	String nome = "Carboidrato"; 
+    	
+    	thrown.expect(DadoVazioException.class);
+        thrown.expectMessage("Campo nome não pode ser vazio");
+    	
+    	Grupo grupo = new Grupo(id, nome);
+    	
+        grupo.setNome("");
+        
+    }
 
 }
