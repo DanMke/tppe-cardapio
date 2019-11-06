@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.AlimentoController;
+import controllers.GrupoController;
 import exceptions.DadoIncompletoException;
 import models.Grupo;
 import java.awt.Component;
@@ -19,7 +21,9 @@ import java.awt.Dimension;
 
 @SuppressWarnings("serial")
 public class JanelaMenu extends JFrame implements ActionListener {
-
+	private GrupoController grupoController;
+	private AlimentoController alimentoController;
+	
 	private JPanel contentPane;
 	private JButton criarGrupo;
 	private JButton editarGrupo;
@@ -46,6 +50,9 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
+		
+		grupoController = new GrupoController();
+		alimentoController = new AlimentoController();
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,14 +117,10 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		if (nomeGrupo != null) { // checa se apertou cancelar
 			
 			try {
-				
-				new Grupo(1, nomeGrupo);
-				
+				grupoController.salvarGrupo(nomeGrupo);
 			} catch (DadoIncompletoException e) {
-				
 				JOptionPane.showMessageDialog(null, 
 						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
-				
 			}
 		}
 		
@@ -144,3 +147,4 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	}
 
 }
+
