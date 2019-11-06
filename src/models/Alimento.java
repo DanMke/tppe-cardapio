@@ -1,6 +1,7 @@
 package models;
 
 import exceptions.DadoIncompletoException;
+import exceptions.DadoVazioException;
 
 public class Alimento {
 	
@@ -43,7 +44,12 @@ public class Alimento {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) throws DadoVazioException {
+		
+		if(nome.equals("") || nome.equals(null)) {
+			throw new DadoVazioException("Campo medida não pode ser vazio");
+		}
+		
 		this.nome = nome;
 	}
 	
@@ -51,7 +57,12 @@ public class Alimento {
 		return medida;
 	}
 	
-	public void setMedida(String medida) {
+	public void setMedida(String medida) throws DadoVazioException {
+		
+		if(medida.equals("") || medida.equals(null)) {
+			throw new DadoVazioException("Campo medida não pode ser vazio");
+		}
+		
 		this.medida = medida;
 	}
 	
@@ -59,7 +70,12 @@ public class Alimento {
 		return grupo;
 	}
 	
-	public void setGrupo(Grupo grupo) {
+	public void setGrupo(Grupo grupo) throws DadoVazioException {
+		
+		if(grupo.equals(null)) {
+			throw new DadoVazioException("Campo grupo não pode ser vazio");
+		}
+	
 		this.grupo = grupo;
 	}
 	

@@ -1,6 +1,7 @@
 package models;
 
 import exceptions.DadoIncompletoException;
+import exceptions.DadoVazioException;
 
 public class Grupo {
 	
@@ -41,7 +42,12 @@ public class Grupo {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Integer id) throws DadoVazioException {
+		
+		if(id.equals(null)) {
+			throw new  DadoVazioException("Campo id não pode ser vazio");
+		}
+		
 		this.id = id;
 	}
 
@@ -49,7 +55,12 @@ public class Grupo {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) throws DadoVazioException {
+		
+		if(nome.equals(null) || nome.equals("")) {
+			throw new  DadoVazioException("Campo id não pode ser vazio");
+		}
+		
 		this.nome = nome;
 	}
 
