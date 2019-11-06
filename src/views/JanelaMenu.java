@@ -138,6 +138,16 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	
 	private void criarAlimento() {
 		// TODO Auto-generated method stub
+		int resultado = JOptionPane.showConfirmDialog(
+				null, 
+				new JanelaCriarAlimento(), 
+	            "", 
+	            JOptionPane.OK_CANCEL_OPTION
+	            );		
+		
+		if (resultado == JOptionPane.OK_OPTION) {
+			System.out.println("Ok");
+		}
 		
 	}
 	
