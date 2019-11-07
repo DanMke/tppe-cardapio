@@ -18,7 +18,7 @@ public class AlimentoTest {
 	@Test
 	public void testInstanciacaoAlimento() throws DadoIncompletoException {
 
-		Grupo grupo = Grupo.obterGrupo(1, "Carboidratos");
+		Grupo grupo = Grupo.obterGrupo("Carboidratos");
 		
 		String nome = "Arroz";
 		String medida = "gramas";

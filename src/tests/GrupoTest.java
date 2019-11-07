@@ -17,21 +17,21 @@ public class GrupoTest {
 	
 	@Test
 	public void testInstanciacaoGrupo() throws DadoIncompletoException {
-		Integer id = 1;
+		// removendo id, pois ela é gerada automaticamente em caso de conflito
+		//Integer id = 1;
 		String nome = "Carboidratos";
 		
-		g = Grupo.obterGrupo(id, nome);
+		g = Grupo.obterGrupo(nome);
 		assertNotNull(g);
-		assertEquals(id, g.getId());
+		// assertEquals(id, g.getId());
 		assertEquals(nome, g.getNome());
 	}
 	
 	@Test (expected = DadoIncompletoException.class)
 	public void testInstanciacaoGrupoDadoIncompleto() throws DadoIncompletoException {
-		Integer id = 1;
 		String nome = "";
 		
-		g = Grupo.obterGrupo(id, nome);
+		g = Grupo.obterGrupo(nome);
 	}
 	
 	@Rule
