@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 import controllers.AlimentoController;
 import controllers.GrupoController;
 import exceptions.DadoIncompletoException;
+import exceptions.DadoVazioException;
+import models.Alimento;
 import models.Grupo;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -105,7 +107,14 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		} else if (source.getText() == "Criar alimento") {
 			criarAlimento();
 		} else {
-			editarAlimento();
+			// TODO substituir pelo alimento que deverá ser editado
+			// TODO remover try/catch
+			try {
+				editarAlimento(new Alimento("Qualquer", "g" , new Grupo(7, "Grupo alt")));
+			} catch (DadoIncompletoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 	}
@@ -114,17 +123,14 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		String nomeGrupo = JOptionPane.showInputDialog(null, 
 				"Digite o nome do grupo",  "Criar Grupo", JOptionPane.PLAIN_MESSAGE);
 		
-		if (nomeGrupo != null) { // checa se apertou cancelar
-			
+		if (nomeGrupo != null) { // checa se apertou cancelar			
 			try {
 				grupoController.salvarGrupo(nomeGrupo);
 			} catch (DadoIncompletoException e) {
 				JOptionPane.showMessageDialog(null, 
 						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
-		}
-		
-		
+		}		
 	}
 	
 	private void editarGrupo() {
@@ -137,8 +143,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	}
 	
 	private void criarAlimento() {
-		// TODO Auto-generated method stub
-		JanelaCriarAlimento janela = new JanelaCriarAlimento();
+		JanelaAlimento janela = new JanelaAlimento();
 		int resultado = JOptionPane.showConfirmDialog(
 				null, 
 				janela, 
@@ -147,8 +152,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	            );		
 		
 		if (resultado == JOptionPane.OK_OPTION) {
-			System.out.println("Ok");
-			
+			System.out.println("Ok");			
 			try {
 				System.out.println(janela.getNome().getText() + janela.getMedida().getText() + janela.getGrupos().getSelectedItem().toString());
 				alimentoController.salvarAlimento(janela.getNome().getText(), janela.getMedida().getText(), janela.getGrupos().getSelectedItem().toString());
@@ -160,9 +164,33 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		
 	}
 	
-	private void editarAlimento() {
+	private void editarAlimento(Alimento alimento) {
 		// TODO Auto-generated method stub
+		JanelaAlimento janela = new JanelaAlimento();
+		janela.getNome().setText(alimento.getNome());
+		janela.getMedida().setText(alimento.getMedida());
 		
+		int resultado = JOptionPane.showConfirmDialog(				
+							null, 
+							janela, 
+				            "", 
+				            JOptionPane.OK_CANCEL_OPTION            
+						);		
+		
+		if (resultado == JOptionPane.OK_OPTION) {			
+			System.out.println("Ok");			
+			
+			try {
+				System.out.println(janela.getNome().getText() + janela.getMedida().getText() + janela.getGrupos().getSelectedItem().toString());
+				alimentoController.editarAlimento(janela.getNome().getText(), janela.getMedida().getText(), janela.getGrupos().getSelectedItem().toString());
+			} catch (DadoIncompletoException e) {
+				JOptionPane.showMessageDialog(null, 
+					"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
+			} catch (DadoVazioException e) {
+				JOptionPane.showMessageDialog(null, 
+						"Dado Vazio", "Erro", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 }

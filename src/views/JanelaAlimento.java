@@ -7,7 +7,7 @@ import javax.swing.*;
 import controllers.GrupoController;
 
 @SuppressWarnings("serial")
-public class JanelaCriarAlimento extends JPanel {
+public class JanelaAlimento extends JPanel {
 	private GrupoController grupoController;
     
 	@SuppressWarnings("rawtypes")
@@ -18,7 +18,7 @@ public class JanelaCriarAlimento extends JPanel {
 	private JLabel comandoGrupos;
 	private JLabel comandoMedida;
    
-    public JanelaCriarAlimento() {
+    public JanelaAlimento() {
     	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     	
     	grupoController = new GrupoController();
