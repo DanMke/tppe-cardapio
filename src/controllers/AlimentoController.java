@@ -1,21 +1,16 @@
 package controllers;
 
-public class AlimentoController {
-	
-	//TODO SALVAR NO BANCO
-	public void salvarAlimento(String nome, String medida) throws DadoIncompletoException{
-		Grupo grupo = new Grupo(5, "Qualquer um");
-		new Alimento(nome, medida, grupo);
-	}
-
-}
-.util.HashMap;
-
 import exceptions.DadoIncompletoException;
 import models.Alimento;
 import models.Grupo;
 
 public class AlimentoController {
 	
+	//TODO SALVAR NO BANCO
+	public void salvarAlimento(String nome, String medida, String nomeGrupo) throws DadoIncompletoException{
+		// TODO Buscar grupo relacionado a esse nome no BD
+		Grupo grupo = new Grupo(5, nomeGrupo);
+		new Alimento(nome, medida, grupo);
+	}
 
 }

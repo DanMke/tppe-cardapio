@@ -9,12 +9,14 @@ import controllers.GrupoController;
 @SuppressWarnings("serial")
 public class JanelaCriarAlimento extends JPanel {
 	private GrupoController grupoController;
-    private JLabel comandoGrupos;
     
 	@SuppressWarnings("rawtypes")
 	private JComboBox grupos;
+	private JTextField nome;
+	private JTextField medida;
 	private JLabel comandoNome;
-    private JTextField novoNome;
+	private JLabel comandoGrupos;
+	private JLabel comandoMedida;
    
     public JanelaCriarAlimento() {
     	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -30,7 +32,9 @@ public class JanelaCriarAlimento extends JPanel {
 		comandoGrupos = new JLabel("Escolha o grupo do alimento");
 		grupos = new JComboBox(grupoController.getNomesGrupos());
 		comandoNome = new JLabel("Digite o nome do alimento");
-		novoNome = new JTextField();		
+		nome = new JTextField();
+		comandoMedida = new JLabel("Digite o nome da medida usada por esse alimento");
+		medida = new JTextField();
 	}
 
 	private void adicionarComponentes() {
@@ -41,10 +45,25 @@ public class JanelaCriarAlimento extends JPanel {
 		add(Box.createRigidArea(new Dimension(10,30)));
 		add(comandoNome);
 		add(Box.createRigidArea(new Dimension(10,30)));
-		add(novoNome);
+		add(nome);
 		add(Box.createRigidArea(new Dimension(10,30)));
-		
+		add(comandoMedida);
+		add(Box.createRigidArea(new Dimension(10,30)));
+		add(medida);
+		add(Box.createRigidArea(new Dimension(10,30)));
 	}
 
+	@SuppressWarnings("unchecked")
+	public JComboBox<String> getGrupos() {
+		return grupos;
+	}
+
+	public JTextField getNome() {
+		return nome;
+	}
+
+	public JTextField getMedida() {
+		return medida;
+	}
 
 }
