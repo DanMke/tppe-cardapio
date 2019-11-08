@@ -31,6 +31,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	private JButton editarGrupo;
 	private JButton criarAlimento;
 	private JButton editarAlimento;
+	private JButton montarCardapio;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -76,6 +77,8 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		criarAlimento.setAlignmentX(Component.CENTER_ALIGNMENT);
 		editarAlimento = new JButton("Editar alimento");
 		editarAlimento.setAlignmentX(Component.CENTER_ALIGNMENT);
+		montarCardapio = new JButton("Montar Cardápio");
+		montarCardapio.setAlignmentX(Component.CENTER_ALIGNMENT);
 	}
 	
 	private void adicionarBotoes() {
@@ -87,6 +90,8 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		contentPane.add(criarAlimento);
 		contentPane.add(Box.createRigidArea(new Dimension(10,30)));
 		contentPane.add(editarAlimento);
+		contentPane.add(Box.createRigidArea(new Dimension(10,30)));
+		contentPane.add(montarCardapio);
 	}
 	
 	private void adicionarListeners() {
@@ -94,6 +99,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		editarGrupo.addActionListener(this);
 		criarAlimento.addActionListener(this);
 		editarAlimento.addActionListener(this);
+		montarCardapio.addActionListener(this);
 	}
 
 	@Override
@@ -106,7 +112,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 			editarGrupo();
 		} else if (source.getText() == "Criar alimento") {
 			criarAlimento();
-		} else {
+		} else if (source.getText() == "Editar alimento") {
 			// TODO substituir pelo alimento que deverá ser editado
 			// TODO remover try/catch
 			try {
@@ -115,6 +121,8 @@ public class JanelaMenu extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		} else {
+			montarCardapio();
 		}
 		
 	}
@@ -191,6 +199,11 @@ public class JanelaMenu extends JFrame implements ActionListener {
 						"Dado Vazio", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
+	}
+	
+	private void montarCardapio() {
+		JanelaMontarCardapio frameMontarCardapio = new JanelaMontarCardapio();
+		frameMontarCardapio.setVisible(true);
 	}
 
 }
