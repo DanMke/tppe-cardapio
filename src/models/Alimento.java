@@ -17,7 +17,7 @@ public class Alimento {
 	private String medida;
 	private Grupo grupo;
 	
-	public static List<Alimento> alimentos = new ArrayList<>();
+	private static List<Alimento> alimentos = new ArrayList<>();
 	
 	public Alimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
 		verificaDados(nome, medida, grupo);
@@ -41,7 +41,7 @@ public class Alimento {
 		
 		if (canSave) {			
 			alimentos.add(this);
-			this.grupo.alimentos.add(this);
+			this.grupo.addAlimento(this);
 		} else {
 			System.out.println("Este elemento já existe na base!");
 		}
@@ -64,7 +64,7 @@ public class Alimento {
 		
 			os.close();
 			
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 				
@@ -94,12 +94,11 @@ public class Alimento {
 			
 			scanner.close();
 			
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} 
-		catch (DadoIncompletoException e) {
+		} catch (DadoIncompletoException e) {
 			e.printStackTrace();
 		}
 	}
@@ -211,5 +210,8 @@ public class Alimento {
 		this.grupo = grupo;
 	}
 	
+	public static List<Alimento> getAllAlimentos() {
+		return alimentos;
+	}
 
 }

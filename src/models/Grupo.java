@@ -17,8 +17,8 @@ public class Grupo {
 	private Integer id;
 	private String nome;
 
-	public static List<Grupo> grupos = new ArrayList<>();
-	public List<Alimento> alimentos = new ArrayList<>();
+	private static List<Grupo> grupos = new ArrayList<>();
+	private List<Alimento> alimentos = new ArrayList<>();
 	
 	public Grupo(Integer id, String nome) throws DadoIncompletoException {
 		verificaDados(id, nome);
@@ -46,7 +46,7 @@ public class Grupo {
 		
 			os.close();
 			
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
@@ -176,5 +176,17 @@ public class Grupo {
 		
 		this.nome = nome;
 	}
-
+	
+	public List<Alimento> getAlimentos() {
+		return this.alimentos;
+	}
+	
+	public void addAlimento(Alimento alimento) {
+		this.alimentos.add(alimento);
+	}
+	
+	public static List<Grupo> getAllGrupos() {
+		return grupos;
+	}
+	
 }
