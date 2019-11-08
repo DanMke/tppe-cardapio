@@ -1,7 +1,6 @@
 package controllers;
 
 import exceptions.DadoIncompletoException;
-import models.Grupo;
 
 public class GrupoController {
 	
@@ -12,8 +11,8 @@ public class GrupoController {
 	
 	//TODO SALVAR NO BANCO
 	public void salvarGrupo(String nome) throws DadoIncompletoException{
-		Grupo grupo = new Grupo(1, nome);
-		
+		//Grupo grupo = new Grupo(1, nome);
+
 	}
 }
 

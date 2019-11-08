@@ -1,10 +1,8 @@
 package models;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,7 +18,7 @@ public class Grupo {
 	private String nome;
 
 	public static List<Grupo> grupos = new ArrayList<>();
-	public static List<Alimento> alimentos = new ArrayList<>();
+	public List<Alimento> alimentos = new ArrayList<>();
 	
 	public Grupo(Integer id, String nome) throws DadoIncompletoException {
 		verificaDados(id, nome);
@@ -28,9 +26,8 @@ public class Grupo {
 		this.id = id;
 		this.nome = nome;
 
-		if (this.grupos == null){
-
-			this.grupos = new LinkedList<Grupo>();
+		if (grupos == null){
+			grupos = new LinkedList<Grupo>();
 		}
 		
 		this.salvarNaLista();
@@ -58,8 +55,13 @@ public class Grupo {
 	public static void carregar() {
 		
 		Scanner scanner = null;
+		File file = new File("grupos.txt");
+				
 		try {
-			scanner = new Scanner(new File("grupos.txt"));
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			scanner = new Scanner(file);
 			
 			while(scanner.hasNextLine()) {
 				String s = scanner.nextLine();
@@ -71,7 +73,7 @@ public class Grupo {
 			
 			scanner.close();
 			
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
@@ -80,15 +82,23 @@ public class Grupo {
 		}
 	}
 
-	private void salvarNaLista(){
-
+	private void salvarNaLista() {
+		boolean canSave = true;
+		
 		for(Grupo g : grupos) {
+			if (this.nome.equals(g.nome)) {
+				canSave = false;
+			}
 			if (this.id == g.id) {
 				this.id += 1;
 			}
 		}
-
-		grupos.add(this);
+		
+		if (canSave) {			
+			grupos.add(this);
+		} else {
+			System.out.println("Este elemento já existe na base!");
+		}
 	}
 	
 	private static Grupo obterDaLista(String nome) {

@@ -8,7 +8,6 @@ import org.junit.rules.ExpectedException;
 
 import exceptions.DadoIncompletoException;
 import exceptions.DadoVazioException;
-import models.Alimento;
 import models.Grupo;
 
 public class GrupoTest {

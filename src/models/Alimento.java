@@ -26,10 +26,29 @@ public class Alimento {
 		this.medida = medida;
 		this.grupo = grupo;
 		
-		alimentos.add(this);
+		this.salvarNaLista();
 	}
 	
 	
+	private void salvarNaLista() {
+		boolean canSave = true;
+		
+		for(Alimento a : alimentos) {
+			if (this.nome.equals(a.nome)) {
+				canSave = false;
+			}
+		}
+		
+		if (canSave) {			
+			alimentos.add(this);
+			this.grupo.alimentos.add(this);
+		} else {
+			System.out.println("Este elemento já existe na base!");
+		}
+		
+	}
+
+
 	public static void escrever() {
 		
 		OutputStream os = null;
@@ -51,11 +70,16 @@ public class Alimento {
 				
 	}
 	
-	public static void carregar(){
+	public static void carregar() {
 		
 		Scanner scanner = null;
+		File file = new File("alimentos.txt");
 		try {
-			scanner = new Scanner(new File("alimentos.txt"));
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			
+			scanner = new Scanner(file);
 			
 			while(scanner.hasNextLine()) {
 				String s = scanner.nextLine();
