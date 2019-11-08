@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,8 +19,8 @@ public class Grupo {
 	private Integer id;
 	private String nome;
 
-	public static List<Grupo> grupos;
-	public static List<Alimento> alimentos;
+	public static List<Grupo> grupos = new ArrayList<>();
+	public static List<Alimento> alimentos = new ArrayList<>();
 	
 	public Grupo(Integer id, String nome) throws DadoIncompletoException {
 		verificaDados(id, nome);
@@ -99,6 +100,17 @@ public class Grupo {
 		}
 		
 		return null;
+	}
+	
+	public static void editarGrupo(Integer id, String novoNome) {
+		
+		for (Grupo g: grupos) {
+			if( g.id == id) {
+				g.nome = novoNome;
+				break;
+			}
+		}
+		
 	}
 	
 	public static Grupo obterGrupo(String nome) throws DadoIncompletoException {

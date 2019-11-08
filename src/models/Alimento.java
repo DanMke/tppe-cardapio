@@ -1,5 +1,13 @@
 package models;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import exceptions.DadoIncompletoException;
 import exceptions.DadoVazioException;
 
@@ -9,12 +17,112 @@ public class Alimento {
 	private String medida;
 	private Grupo grupo;
 	
+	public static List<Alimento> alimentos = new ArrayList<>();
+	
 	public Alimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
 		verificaDados(nome, medida, grupo);
 		
 		this.nome = nome;
 		this.medida = medida;
 		this.grupo = grupo;
+		
+		alimentos.add(this);
+	}
+	
+	
+	public static void escrever() {
+		
+		OutputStream os = null;
+		try {
+			os = new FileOutputStream(new File("alimentos.txt"));
+			
+			for(Alimento a : alimentos) {
+				String nomeGrupo = a.getGrupo().getNome();
+				
+				String s = a.nome + "%" + a.medida + "%" + nomeGrupo + "\n";
+				os.write(s.getBytes());
+			}
+		
+			os.close();
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+	}
+	
+	public static void carregar(){
+		
+		Scanner scanner = null;
+		try {
+			scanner = new Scanner(new File("alimentos.txt"));
+			
+			while(scanner.hasNextLine()) {
+				String s = scanner.nextLine();
+				
+				var partes = s.split("%");
+				
+				Grupo g = Grupo.obterGrupo(partes[2]);
+				
+				new Alimento(partes[0], partes[1], g);
+				
+			}
+			
+			scanner.close();
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} 
+		catch (DadoIncompletoException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Alimento editarNomeAlimento (String nomeAtual, String novoNome) throws DadoVazioException {
+		
+		for (Alimento al: alimentos) {
+			if(al.getNome() == nomeAtual) {
+				al.setNome(novoNome);
+				
+				return al;
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	public static Alimento editarPorcaoAlimento (String nomeAlimento, String medida) throws DadoVazioException {
+		
+		for (Alimento al: alimentos) {
+			if(al.getNome() == nomeAlimento) {
+				al.setMedida(medida);
+				
+				return al;
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	
+	public static Alimento editarGrupoAlimento (String nomeAlimento, String nomeNovoGrupo) throws DadoIncompletoException, DadoVazioException {
+		
+		for (Alimento al: alimentos) {
+			if(al.getNome() == nomeAlimento) {
+				Grupo g = Grupo.obterGrupo(nomeNovoGrupo);
+				
+				al.setGrupo(g);
+				
+				return al;
+			}
+		}
+		
+		return null;
+		
 	}
 	
 	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
