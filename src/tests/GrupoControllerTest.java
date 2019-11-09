@@ -7,17 +7,20 @@ import java.awt.List;
 import org.junit.Test;
 
 import controllers.GrupoController;
+import exceptions.DadoIncompletoException;
 import models.Grupo;
 
 public class GrupoControllerTest {
-
+	
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testRecuperarGrupos() {
+	public void testRecuperarGrupos() throws DadoIncompletoException {
+		new Grupo(4, "Carboidratos");
+		new Grupo(5, "Carnes e Ovos");
+		new Grupo(6, "Verde");
 		
 		GrupoController grupoController = new GrupoController();
-		String[] nome = {"Carboidratos", "Vegetais", "Fibras"};
-		
+		String[] nome = {"Carboidratos", "Carnes e Ovos", "Verde"};
 		
 		assertEquals(grupoController.getNomesGrupos(), nome);
 	}

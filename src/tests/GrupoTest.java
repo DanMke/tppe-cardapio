@@ -37,12 +37,12 @@ public class GrupoTest {
     public ExpectedException thrown = ExpectedException.none();
 	
     @Test
-    public void testDadoVazioIdGrupo() throws DadoIncompletoException, DadoVazioException {
+    public void testDadoVazioIdGrupo() throws DadoIncompletoException {
 
     	Integer id = 1;
     	String nome = "Verde"; 
     	
-    	thrown.expect(DadoVazioException.class);
+    	thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo id não pode ser vazio");
     	
     	Grupo grupo = new Grupo(id, nome);
@@ -52,12 +52,12 @@ public class GrupoTest {
     }
     
     @Test
-    public void testDadoVazioNomeGrupo() throws DadoIncompletoException, DadoVazioException {
+    public void testDadoVazioNomeGrupo() throws DadoIncompletoException {
 
     	Integer id = 2;
     	String nome = "Carboidrato"; 
     	
-    	thrown.expect(DadoVazioException.class);
+    	thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo nome não pode ser vazio");
     	
     	Grupo grupo = new Grupo(id, nome);

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import exceptions.DadoIncompletoException;
-import exceptions.DadoVazioException;
 
 public class Alimento {
 	
@@ -103,51 +102,6 @@ public class Alimento {
 		}
 	}
 	
-	public static Alimento editarNomeAlimento (String nomeAtual, String novoNome) throws DadoVazioException {
-		
-		for (Alimento al: alimentos) {
-			if(al.getNome() == nomeAtual) {
-				al.setNome(novoNome);
-				
-				return al;
-			}
-		}
-		
-		return null;
-		
-	}
-	
-	public static Alimento editarPorcaoAlimento (String nomeAlimento, String medida) throws DadoVazioException {
-		
-		for (Alimento al: alimentos) {
-			if(al.getNome() == nomeAlimento) {
-				al.setMedida(medida);
-				
-				return al;
-			}
-		}
-		
-		return null;
-		
-	}
-	
-	
-	public static Alimento editarGrupoAlimento (String nomeAlimento, String nomeNovoGrupo) throws DadoIncompletoException, DadoVazioException {
-		
-		for (Alimento al: alimentos) {
-			if(al.getNome() == nomeAlimento) {
-				Grupo g = Grupo.obterGrupo(nomeNovoGrupo);
-				
-				al.setGrupo(g);
-				
-				return al;
-			}
-		}
-		
-		return null;
-		
-	}
-	
 	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
 		Alimento a = new Alimento(nome, medida, grupo);
 		return a;
@@ -175,10 +129,10 @@ public class Alimento {
 		return nome;
 	}
 
-	public void setNome(String nome) throws DadoVazioException {
+	public void setNome(String nome) throws DadoIncompletoException {
 		
 		if(nome.equals("") || nome == null) {
-			throw new DadoVazioException("Campo nome não pode ser vazio");
+			throw new DadoIncompletoException("Campo nome não pode ser vazio");
 		}
 		
 		this.nome = nome;
@@ -188,10 +142,10 @@ public class Alimento {
 		return medida;
 	}
 	
-	public void setMedida(String medida) throws DadoVazioException {
+	public void setMedida(String medida) throws DadoIncompletoException {
 		
 		if(medida.equals("") || medida == null) {
-			throw new DadoVazioException("Campo medida não pode ser vazio");
+			throw new DadoIncompletoException("Campo medida não pode ser vazio");
 		}
 		
 		this.medida = medida;
@@ -201,10 +155,10 @@ public class Alimento {
 		return grupo;
 	}
 	
-	public void setGrupo(Grupo grupo) throws DadoVazioException {
+	public void setGrupo(Grupo grupo) throws DadoIncompletoException {
 		
 		if(grupo == null) {
-			throw new DadoVazioException("Campo grupo não pode ser vazio");
+			throw new DadoIncompletoException("Campo grupo não pode ser vazio");
 		}
 	
 		this.grupo = grupo;
