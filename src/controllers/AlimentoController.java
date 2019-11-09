@@ -15,14 +15,23 @@ public class AlimentoController {
 	}
 	
 	public Alimento editarAlimento(String nome, String medida, String nomeGrupo) throws DadoVazioException, DadoIncompletoException{
-		Alimento alimentoTemp = new Alimento("Não Editado", "G", new Grupo(8, nomeGrupo));
-		// TODO Buscar Alimento no BD
-		// TODO editar objeto no BD
-		// TODO buscar grupo com esse nome
-		alimentoTemp.setGrupo(new Grupo(4, nomeGrupo));
-		alimentoTemp.setMedida(medida);
-		alimentoTemp.setNome(nome);
+//		Alimento alimentoTemp = new Alimento("Não Editado", "G", new Grupo(8, nomeGrupo));
+//		// TODO Buscar Alimento no BD
+//		// TODO editar objeto no BD
+//		// TODO buscar grupo com esse nome
+//		alimentoTemp.setGrupo(new Grupo(4, nomeGrupo));
+//		alimentoTemp.setMedida(medida);
+//		alimentoTemp.setNome(nome);
 		
-		return alimentoTemp;
+//		return alimentoTemp;
+		
+		for (Alimento al: Alimento.getAllAlimentos()) {
+			if(al.getNome() == "Macarrão") {
+				return al;
+			}
+		}
+		
+		return null;
+		
 	}
 }
