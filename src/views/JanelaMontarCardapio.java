@@ -22,6 +22,7 @@ public class JanelaMontarCardapio extends JFrame implements ActionListener{
 	private PainelDiaDaSemana sabado;
 	private PainelDiaDaSemana domingo;
 	private JButton btnNext;
+	JanelaCardapio frameJanelaCardapio;
 	
     public JanelaMontarCardapio() {
     	setExtendedState(MAXIMIZED_BOTH);
@@ -76,7 +77,7 @@ public class JanelaMontarCardapio extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JanelaCardapio frameJanelaCardapio = new JanelaCardapio();
+		frameJanelaCardapio = new JanelaCardapio();
 		frameJanelaCardapio.setVisible(true);
 		this.setVisible(false);
 	}

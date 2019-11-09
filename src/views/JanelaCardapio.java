@@ -1,5 +1,7 @@
 package views;
 
+import java.util.ArrayList;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,6 +51,21 @@ public class JanelaCardapio extends JFrame {
 		sexta = new PainelDiaDaSemanaCardapio("Sexta");
 		sabado = new PainelDiaDaSemanaCardapio("Sábado");
 		domingo = new PainelDiaDaSemanaCardapio("Domingo");
+		
+		//TODO Excluir
+		ArrayList<String> alimentos = new ArrayList<String>();
+		alimentos.add("Batata");
+		alimentos.add("Arroz");
+		alimentos.add("Feijão");
+		alimentos.add("Alface");
+		alimentos.add("Alface");
+		segunda.setAlimentos(alimentos);
+		terca.setAlimentos(alimentos);
+		quarta.setAlimentos(alimentos);
+		quinta.setAlimentos(alimentos);
+		sexta.setAlimentos(alimentos);
+		sabado.setAlimentos(alimentos);
+		domingo.setAlimentos(alimentos);
 	}
 
 	private void adicionarComponentes() {
@@ -61,4 +78,5 @@ public class JanelaCardapio extends JFrame {
 		segundaLinha.add(domingo);
 		
 	}
+	
 }
