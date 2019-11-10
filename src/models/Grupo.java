@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import exceptions.DadoIncompletoException;
-import exceptions.DadoVazioException;
 
 public class Grupo {
 	
@@ -155,10 +154,10 @@ public class Grupo {
 		return id;
 	}
 
-	public void setId(Integer id) throws DadoVazioException {
+	public void setId(Integer id) throws DadoIncompletoException {
 		
 		if(id == null) {
-			throw new  DadoVazioException("Campo id não pode ser vazio");
+			throw new  DadoIncompletoException("Campo id não pode ser vazio");
 		}
 		
 		this.id = id;
@@ -168,10 +167,10 @@ public class Grupo {
 		return nome;
 	}
 
-	public void setNome(String nome) throws DadoVazioException {
+	public void setNome(String nome) throws DadoIncompletoException {
 		
 		if(nome == null || nome.equals("")) {
-			throw new  DadoVazioException("Campo nome não pode ser vazio");
+			throw new  DadoIncompletoException("Campo nome não pode ser vazio");
 		}
 		
 		this.nome = nome;

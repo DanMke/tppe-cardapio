@@ -1,7 +1,6 @@
 package controllers;
 
 import exceptions.DadoIncompletoException;
-import exceptions.DadoVazioException;
 import models.Alimento;
 import models.Grupo;
 
@@ -14,15 +13,29 @@ public class AlimentoController {
 		new Alimento(nome, medida, grupo);
 	}
 	
-	public Alimento editarAlimento(String nome, String medida, String nomeGrupo) throws DadoVazioException, DadoIncompletoException{
-		Alimento alimentoTemp = new Alimento("Não Editado", "G", new Grupo(8, nomeGrupo));
-		// TODO Buscar Alimento no BD
-		// TODO editar objeto no BD
-		// TODO buscar grupo com esse nome
-		alimentoTemp.setGrupo(new Grupo(4, nomeGrupo));
-		alimentoTemp.setMedida(medida);
-		alimentoTemp.setNome(nome);
+	public Alimento editarAlimento(String nomeAtual, String nome, String medida, String nomeGrupo) throws  DadoIncompletoException{
 		
-		return alimentoTemp;
+		Grupo novoGrupo = null;
+		Alimento novoAlimento = null;
+		
+		for(Grupo g: Grupo.getAllGrupos()) {
+			if(g.getNome() == nomeGrupo) {
+				novoGrupo = g;
+				break;
+			}
+		}
+		
+		for (Alimento al: Alimento.getAllAlimentos()) {
+			if(al.getNome() == nomeAtual) {
+				al.setNome(nome);
+				al.setMedida(medida);
+				al.setGrupo(novoGrupo);
+				novoAlimento = al;
+				break;
+			}
+		}
+		
+		return novoAlimento;
+		
 	}
 }

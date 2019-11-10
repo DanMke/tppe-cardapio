@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import exceptions.DadoIncompletoException;
-import exceptions.DadoVazioException;
 import models.Alimento;
 import models.Grupo;
 
@@ -43,13 +42,13 @@ public class AlimentoTest {
     public ExpectedException thrown = ExpectedException.none();
 	
     @Test
-    public void testDadoVazioNomeAlimento() throws DadoIncompletoException, DadoVazioException {
+    public void testDadoVazioNomeAlimento() throws DadoIncompletoException {
 
     	String nome = "Joberto";
     	String medida = "25 gramas";
     	Grupo grupo = new Grupo(1, "Verde");
     	
-        thrown.expect(DadoVazioException.class);
+        thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo nome não pode ser vazio");
 
        
@@ -60,13 +59,13 @@ public class AlimentoTest {
     }
    
     @Test
-    public void testDadoVazioMedidaAlimento() throws DadoIncompletoException, DadoVazioException {
+    public void testDadoVazioMedidaAlimento() throws DadoIncompletoException {
 
     	String nome = "Alana";
     	String medida = "80 gramas";
     	Grupo grupo = new Grupo(2, "Carboidrato");
     	
-        thrown.expect(DadoVazioException.class);
+        thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo medida não pode ser vazio");
 
         
@@ -77,13 +76,13 @@ public class AlimentoTest {
     }
     
     @Test
-    public void testDadoVazioGrupoAlimento() throws DadoVazioException, DadoIncompletoException {
+    public void testDadoVazioGrupoAlimento() throws DadoIncompletoException {
 
     	String nome = "Melanie";
     	String medida = "100 gramas";
     	Grupo grupo = new Grupo(2, "Carboidrato");
     	
-        thrown.expect(DadoVazioException.class);
+        thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo grupo não pode ser vazio");
 
         
