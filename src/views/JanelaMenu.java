@@ -15,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 import controllers.AlimentoController;
 import controllers.GrupoController;
 import exceptions.DadoIncompletoException;
-import exceptions.DadoVazioException;
 import models.Alimento;
 import models.Grupo;
 import java.awt.Component;
@@ -190,13 +189,10 @@ public class JanelaMenu extends JFrame implements ActionListener {
 			
 			try {
 				System.out.println(janela.getNome().getText() + janela.getMedida().getText() + janela.getGrupos().getSelectedItem().toString());
-				alimentoController.editarAlimento(janela.getNome().getText(), janela.getMedida().getText(), janela.getGrupos().getSelectedItem().toString());
+				alimentoController.editarAlimento(alimento.getNome(), janela.getNome().getText(), janela.getMedida().getText(), janela.getGrupos().getSelectedItem().toString());
 			} catch (DadoIncompletoException e) {
 				JOptionPane.showMessageDialog(null, 
 					"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
-			} catch (DadoVazioException e) {
-				JOptionPane.showMessageDialog(null, 
-						"Dado Vazio", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
