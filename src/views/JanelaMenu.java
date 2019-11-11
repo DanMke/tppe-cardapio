@@ -150,7 +150,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	}
 	
 	private void criarAlimento() {
-		JanelaAlimento janela = new JanelaAlimento();
+		JanelaAlimento janela = new JanelaAlimento(true);
 		int resultado = JOptionPane.showConfirmDialog(
 				null, 
 				janela, 
@@ -172,8 +172,8 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	}
 	
 	private void editarAlimento(Alimento alimento) {
-		// TODO Auto-generated method stub
-		JanelaAlimento janela = new JanelaAlimento();
+		JanelaAlimento janela = new JanelaAlimento(false);
+		
 		janela.getNome().setText(alimento.getNome());
 		janela.getMedida().setText(alimento.getMedida());
 		
