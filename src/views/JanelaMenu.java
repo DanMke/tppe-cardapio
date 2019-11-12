@@ -22,7 +22,6 @@ import java.awt.Dimension;
 
 @SuppressWarnings("serial")
 public class JanelaMenu extends JFrame implements ActionListener {
-	private GrupoController grupoController;
 	private AlimentoController alimentoController;
 	
 	private JPanel contentPane;
@@ -31,20 +30,6 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	private JButton criarAlimento;
 	private JButton editarAlimento;
 	private JButton montarCardapio;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JanelaMenu frame = new JanelaMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
 	public JanelaMenu() {
 		setTitle("Montador de cardápio");
@@ -53,7 +38,6 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		setBounds(100, 100, 450, 400);
 		setLocationRelativeTo(null);
 		
-		grupoController = new GrupoController();
 		alimentoController = new AlimentoController();
 
 		contentPane = new JPanel();
@@ -131,20 +115,27 @@ public class JanelaMenu extends JFrame implements ActionListener {
 				"Digite o nome do grupo",  "Criar Grupo", JOptionPane.PLAIN_MESSAGE);
 		
 		if (nomeGrupo != null) { // checa se apertou cancelar			
-//			try {
-//				grupoController.salvarGrupo(nomeGrupo);
-//			} catch (DadoIncompletoException e) {
-//				JOptionPane.showMessageDialog(null, 
-//						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
-//			}
+			try {
+				GrupoController.salvarGrupo(nomeGrupo);
+			} catch (DadoIncompletoException e) {
+				JOptionPane.showMessageDialog(null, 
+						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
+			}
 		}		
 	}
 	
 	private void editarGrupo() {
-		int resultado = JOptionPane.showConfirmDialog(null, new JanelaEditarGrupo(), 
+		JanelaEditarGrupo janelaEditarGrupo = new JanelaEditarGrupo();
+		int resultado = JOptionPane.showConfirmDialog(null, janelaEditarGrupo, 
 	               "", JOptionPane.OK_CANCEL_OPTION);
 		if (resultado == JOptionPane.OK_OPTION) {
-			System.out.println("Ok");
+			try {
+				GrupoController.editarGrupo(
+						janelaEditarGrupo.getNomeAtual(), janelaEditarGrupo.getNovoNome());
+			} catch (DadoIncompletoException e) {
+				JOptionPane.showMessageDialog(null, 
+						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 	}

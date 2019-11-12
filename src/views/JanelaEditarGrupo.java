@@ -8,7 +8,6 @@ import controllers.GrupoController;
 
 @SuppressWarnings("serial")
 public class JanelaEditarGrupo extends JPanel {
-	private GrupoController controller;
     private JLabel comandoGrupos;
 	@SuppressWarnings("rawtypes")
 	private JComboBox grupos;
@@ -18,8 +17,6 @@ public class JanelaEditarGrupo extends JPanel {
     public JanelaEditarGrupo() {
     	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     	
-    	controller = new GrupoController();
-    	
     	criarComponentes();
     	adicionarComponentes();
     }
@@ -27,7 +24,7 @@ public class JanelaEditarGrupo extends JPanel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void criarComponentes() {
 		comandoGrupos = new JLabel("Escolha o grupo que deseja editar:");
-		grupos = new JComboBox(controller.getNomesGrupos());
+		grupos = new JComboBox(GrupoController.getNomesGrupos());
 		comandoNome = new JLabel("Digite o novo nome");
 		novoNome = new JTextField();	
 		
@@ -44,6 +41,14 @@ public class JanelaEditarGrupo extends JPanel {
 		add(novoNome);
 		add(Box.createRigidArea(new Dimension(10,30)));
 		
+	}
+	
+	public String getNovoNome() {
+		return novoNome.getText();
+	}
+	
+	public String getNomeAtual() {
+		return grupos.getSelectedItem().toString();
 	}
 
 

@@ -14,7 +14,7 @@ import models.Grupo;
 
 public class GrupoController {
 
-	public String[] getNomesGrupos() {
+	public static String[] getNomesGrupos() {
 				
 		List<String> nomeGruposAux = new ArrayList<String>();
 		
@@ -133,6 +133,11 @@ public class GrupoController {
 		} else {
 			System.out.println("Este elemento já existe na base!");
 		}
+	}
+	
+	public static void salvarGrupo(String nome) throws DadoIncompletoException {
+		Grupo grupo = new Grupo(nome);
+		salvarNaLista(grupo);
 	}
 	
 }

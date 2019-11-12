@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ import exceptions.CardapioOverflowException;
 import exceptions.DadoIncompletoException;
 import models.Alimento;
 import models.Grupo;
+import views.JanelaMenu;
 
 public class Program {
 
@@ -130,6 +132,17 @@ public class Program {
 
 		CardapioController.montarCardapio(list);
 		CardapioController.imprimeCardapio();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaMenu frame = new JanelaMenu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }
