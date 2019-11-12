@@ -2,7 +2,6 @@ package views;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;

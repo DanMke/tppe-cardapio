@@ -121,6 +121,152 @@ public class CardapioTest {
 		assertEquals(Cardapio.getCardapioSemana().get(0).getRefeicoesDia().get(0).getAlimentos().get(2).getGrupo(), g3);
 	}
 	
+	@Test
+	public void testeMontarCardapio2() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
+		Grupo g1 = Grupo.obterGrupo("Carboidratos");
+		Grupo g2 = Grupo.obterGrupo("Verduras e Legumes");
+		Grupo g3 = Grupo.obterGrupo("Frutas");
+		Grupo g4 = Grupo.obterGrupo("Leite e derivados");
+		Grupo g5 = Grupo.obterGrupo("Carnes e Ovos");
+		Grupo g6 = Grupo.obterGrupo("Leguminosas e oleaginosas");
+		Grupo g7 = Grupo.obterGrupo("Óleos e Gorduras");
+		Grupo g8 = Grupo.obterGrupo("Açúcares e Doces");
+		
+        Alimento.obterAlimento("Pão", "gramas", g1);
+		Alimento.obterAlimento("Arroz", "gramas", g1);
+		Alimento.obterAlimento("Macarrão", "gramas", g1);
+		Alimento.obterAlimento("Abóbora", "gramas", g2);
+		Alimento.obterAlimento("Couve", "gramas", g2);
+		Alimento.obterAlimento("Couve-flor", "gramas", g2);
+		Alimento.obterAlimento("Alface", "gramas", g2);
+		Alimento.obterAlimento("Abacaxi", "gramas", g3);
+		Alimento.obterAlimento("Maçã", "gramas", g3);
+		Alimento.obterAlimento("Laranja", "gramas", g3);
+		Alimento.obterAlimento("Manteiga", "gramas", g4);
+		Alimento.obterAlimento("Iogurte", "gramas", g4);
+		Alimento.obterAlimento("Requeijão", "gramas", g4);
+		Alimento.obterAlimento("Queijo", "gramas", g4);
+		Alimento.obterAlimento("Carne de Sol", "gramas", g5);
+		Alimento.obterAlimento("Carne moída", "gramas", g5);
+		Alimento.obterAlimento("Cupim", "gramas", g5);
+		Alimento.obterAlimento("Ovo", "gramas", g5);
+		Alimento.obterAlimento("Feijão", "gramas", g6);
+		Alimento.obterAlimento("Lentilha", "gramas", g6);
+		Alimento.obterAlimento("Ervilha", "gramas", g6);
+		Alimento.obterAlimento("Óleo de milho", "gramas", g7);
+		Alimento.obterAlimento("Óleo de soja", "gramas", g7);
+		Alimento.obterAlimento("Óleo de girassol", "gramas", g7);
+		Alimento.obterAlimento("Azeites", "gramas", g7);
+		Alimento.obterAlimento("Açúcar de cana", "gramas", g8);
+		Alimento.obterAlimento("Açúcar mascavo", "gramas", g8);
+		
+		List<Grupo> d1 = Arrays.asList(g1, g2, g3);
+		List<Grupo> d2 = Arrays.asList(g4, g5, g6);
+		List<Grupo> d3 = Arrays.asList(g7, g8, g1);
+		List<List<Grupo>> list = new ArrayList<List<Grupo>>();
+		list.add(d1);
+		list.add(d2);
+		list.add(d3);
+		list.add(d2);
+		list.add(d1);
+		list.add(d2);
+		list.add(d3);
+
+		CardapioController.montarCardapio(list);
+		
+		assertEquals(Cardapio.getCardapioSemana().get(6).getRefeicoesDia().get(0).getAlimentos().get(0).getGrupo(), g7);
+		assertEquals(Cardapio.getCardapioSemana().get(6).getRefeicoesDia().get(0).getAlimentos().get(1).getGrupo(), g8);
+		assertEquals(Cardapio.getCardapioSemana().get(6).getRefeicoesDia().get(0).getAlimentos().get(2).getGrupo(), g1);
+	}
+	
+	@Test
+	public void testeMontarCardapio3() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
+		Grupo g1 = Grupo.obterGrupo("Carboidratos");
+		Grupo g2 = Grupo.obterGrupo("Verduras e Legumes");
+		Grupo g3 = Grupo.obterGrupo("Frutas");
+		Grupo g4 = Grupo.obterGrupo("Leite e derivados");
+		Grupo g5 = Grupo.obterGrupo("Carnes e Ovos");
+		Grupo g6 = Grupo.obterGrupo("Leguminosas e oleaginosas");
+		Grupo g7 = Grupo.obterGrupo("Óleos e Gorduras");
+		Grupo g8 = Grupo.obterGrupo("Açúcares e Doces");
+		
+        Alimento.obterAlimento("Pão", "gramas", g1);
+		Alimento.obterAlimento("Arroz", "gramas", g1);
+		Alimento.obterAlimento("Macarrão", "gramas", g1);
+		Alimento.obterAlimento("Abóbora", "gramas", g2);
+		Alimento.obterAlimento("Couve", "gramas", g2);
+		Alimento.obterAlimento("Couve-flor", "gramas", g2);
+		Alimento.obterAlimento("Alface", "gramas", g2);
+		Alimento.obterAlimento("Abacaxi", "gramas", g3);
+		Alimento.obterAlimento("Maçã", "gramas", g3);
+		Alimento.obterAlimento("Laranja", "gramas", g3);
+		Alimento.obterAlimento("Manteiga", "gramas", g4);
+		Alimento.obterAlimento("Iogurte", "gramas", g4);
+		Alimento.obterAlimento("Requeijão", "gramas", g4);
+		Alimento.obterAlimento("Queijo", "gramas", g4);
+		Alimento.obterAlimento("Carne de Sol", "gramas", g5);
+		Alimento.obterAlimento("Carne moída", "gramas", g5);
+		Alimento.obterAlimento("Cupim", "gramas", g5);
+		Alimento.obterAlimento("Ovo", "gramas", g5);
+		Alimento.obterAlimento("Feijão", "gramas", g6);
+		Alimento.obterAlimento("Lentilha", "gramas", g6);
+		Alimento.obterAlimento("Ervilha", "gramas", g6);
+		Alimento.obterAlimento("Óleo de milho", "gramas", g7);
+		Alimento.obterAlimento("Óleo de soja", "gramas", g7);
+		Alimento.obterAlimento("Óleo de girassol", "gramas", g7);
+		Alimento.obterAlimento("Azeites", "gramas", g7);
+		Alimento.obterAlimento("Açúcar de cana", "gramas", g8);
+		Alimento.obterAlimento("Açúcar mascavo", "gramas", g8);
+		
+		List<Grupo> d1 = Arrays.asList(g1, g2, g3);
+		List<Grupo> d2 = Arrays.asList(g4, g5, g6);
+		List<Grupo> d3 = Arrays.asList(g7, g8, g1);
+		List<List<Grupo>> list = new ArrayList<List<Grupo>>();
+		list.add(d1);
+		list.add(d2);
+		list.add(d3);
+		list.add(d2);
+		list.add(d1);
+		list.add(d2);
+		list.add(d3);
+
+		CardapioController.montarCardapio(list);
+		
+		assertEquals(Cardapio.getCardapioSemana().get(3).getRefeicoesDia().get(0).getAlimentos().get(0).getGrupo(), g4);
+		assertEquals(Cardapio.getCardapioSemana().get(3).getRefeicoesDia().get(0).getAlimentos().get(1).getGrupo(), g5);
+		assertEquals(Cardapio.getCardapioSemana().get(3).getRefeicoesDia().get(0).getAlimentos().get(2).getGrupo(), g6);
+	}
+	
+	@Test (expected = CardapioInvalidoException.class)
+	public void testeExcecaoCardapio() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
+		Grupo g1 = Grupo.obterGrupo("Carboidratos");
+		Grupo g2 = Grupo.obterGrupo("Verduras e Legumes");
+		Grupo g3 = Grupo.obterGrupo("Frutas");
+		
+		Alimento.obterAlimento("Pão", "gramas", g1);
+		Alimento.obterAlimento("Arroz", "gramas", g1);
+		Alimento.obterAlimento("Macarrão", "gramas", g1);
+		Alimento.obterAlimento("Abóbora", "gramas", g2);
+		Alimento.obterAlimento("Couve", "gramas", g2);
+		Alimento.obterAlimento("Couve-flor", "gramas", g2);
+		Alimento.obterAlimento("Alface", "gramas", g2);
+		Alimento.obterAlimento("Abacaxi", "gramas", g3);
+		Alimento.obterAlimento("Maçã", "gramas", g3);
+		Alimento.obterAlimento("Laranja", "gramas", g3);
+		
+		List<Grupo> d1 = Arrays.asList(g1, g2, g3);
+		List<List<Grupo>> listaGruposSemana = new ArrayList<List<Grupo>>();
+		listaGruposSemana.add(d1);
+		listaGruposSemana.add(d1);
+		listaGruposSemana.add(d1);
+		listaGruposSemana.add(d1);
+		listaGruposSemana.add(d1);
+		listaGruposSemana.add(d1);
+		listaGruposSemana.add(d1);
+
+		CardapioController.montarCardapio(listaGruposSemana);
+	}
+	
 	@Test (expected = CardapioOverflowException.class)
 	public void testeUltrapassarMaximoCardapios() throws CardapioOverflowException {
 		

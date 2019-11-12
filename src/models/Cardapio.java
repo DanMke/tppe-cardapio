@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import exceptions.CardapioOverflowException;
+
 public class Cardapio {
 	
 	public static final List<String> DIAS_DA_SEMANA = Arrays.asList("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado");
@@ -25,7 +27,10 @@ public class Cardapio {
 		this.refeicoesDia = refeicoesDia;
 	}
 
-	public static void addCardapioDia(Cardapio cardapio){
+	public static void addCardapioDia(Cardapio cardapio) throws CardapioOverflowException {
+		if (cardapioSemana.size() + 1 > 7) {
+			throw new CardapioOverflowException("Excedido dias da semana");
+		}
 		cardapioSemana.add(cardapio);	
 	}
 	

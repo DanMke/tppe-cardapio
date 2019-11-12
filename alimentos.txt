@@ -1,1 +1,27 @@
 Pão%gramas%Carboidratos
+Arroz%gramas%Carboidratos
+Macarrão%gramas%Carboidratos
+Abóbora%gramas%Verduras e Legumes
+Couve%gramas%Verduras e Legumes
+Couve-flor%gramas%Verduras e Legumes
+Alface%gramas%Verduras e Legumes
+Abacaxi%gramas%Frutas
+Maçã%gramas%Frutas
+Laranja%gramas%Frutas
+Manteiga%gramas%Leite e derivados
+Iogurte%gramas%Leite e derivados
+Requeijão%gramas%Leite e derivados
+Queijo%gramas%Leite e derivados
+Carne de Sol%gramas%Carnes e Ovos
+Carne moída%gramas%Carnes e Ovos
+Cupim%gramas%Carnes e Ovos
+Ovo%gramas%Carnes e Ovos
+Feijão%gramas%Leguminosas e oleaginosas
+Lentilha%gramas%Leguminosas e oleaginosas
+Ervilha%gramas%Leguminosas e oleaginosas
+Óleo de milho%gramas%Óleos e Gorduras
+Óleo de soja%gramas%Óleos e Gorduras
+Óleo de girassol%gramas%Óleos e Gorduras
+Azeites%gramas%Óleos e Gorduras
+Açúcar de cana%gramas%Açúcares e Doces
+Açúcar mascavo%gramas%Açúcares e Doces
