@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import controllers.AlimentoController;
 import controllers.CardapioController;
+import controllers.GrupoController;
 import exceptions.CardapioInvalidoException;
 import exceptions.CardapioOverflowException;
 import exceptions.DadoIncompletoException;
@@ -14,7 +16,7 @@ import models.Grupo;
 public class Program {
 
 	public static void main(String[] args) throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
-		Grupo.carregar();
+		GrupoController.carregar();
 //		Grupo g1 = new Grupo(1, "Carboidratos");
 //		Grupo g2 = new Grupo(1, "Verduras e Legumes");
 //		Grupo g3 = new Grupo(1, "Frutas");
@@ -23,9 +25,9 @@ public class Program {
 //		Grupo g6 = new Grupo(1, "Leguminosas e oleaginosas");
 //		Grupo g7 = new Grupo(1, "Óleos e Gorduras");
 //		Grupo g8 = new Grupo(1, "Açúcares e Doces");
-		Grupo.escrever();
+		GrupoController.escrever();
 		
-		Alimento.carregar();
+		AlimentoController.carregar();
 //		new Alimento("Pão", "gramas", g1);
 //		new Alimento("Arroz", "gramas", g1);
 //		new Alimento("Macarrão", "gramas", g1);
@@ -53,7 +55,7 @@ public class Program {
 //		new Alimento("Azeites", "gramas", g7);
 //		new Alimento("Açúcar de cana", "gramas", g8);
 //		new Alimento("Açúcar mascavo", "gramas", g8);
-		Alimento.escrever();
+		AlimentoController.escrever();
 		
 //		for (Alimento i : Alimento.getAllAlimentos()) {
 //			System.out.println(i.getNome());
@@ -69,14 +71,14 @@ public class Program {
 //				System.out.println(a.getNome());
 //			}
 //		}
-		Grupo g1 = Grupo.obterGrupo("Carboidratos");
-		Grupo g2 = Grupo.obterGrupo("Verduras e Legumes");
-		Grupo g3 = Grupo.obterGrupo("Frutas");
-		Grupo g4 = Grupo.obterGrupo("Leite e derivados");
-		Grupo g5 = Grupo.obterGrupo("Carnes e Ovos");
-		Grupo g6 = Grupo.obterGrupo("Leguminosas e oleaginosas");
-		Grupo g7 = Grupo.obterGrupo("Óleos e Gorduras");
-		Grupo g8 = Grupo.obterGrupo("Açúcares e Doces");
+		Grupo g1 = new Grupo(1, "Carboidratos");
+		Grupo g2 = new Grupo(1, "Verduras e Legumes");
+		Grupo g3 = new Grupo(1, "Frutas");
+		Grupo g4 = new Grupo(1, "Leite e derivados");
+		Grupo g5 = new Grupo(1, "Carnes e Ovos");
+		Grupo g6 = new Grupo(1, "Leguminosas e oleaginosas");
+		Grupo g7 = new Grupo(1, "Óleos e Gorduras");
+		Grupo g8 = new Grupo(1, "Açúcares e Doces");
 		
 		List<Grupo> d1 = Arrays.asList(g1, g2, g3);
 		List<Grupo> d2 = Arrays.asList(g4, g5, g6);

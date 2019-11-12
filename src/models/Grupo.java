@@ -1,13 +1,8 @@
 package models;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 import exceptions.DadoIncompletoException;
 
@@ -29,107 +24,6 @@ public class Grupo {
 			grupos = new LinkedList<Grupo>();
 		}
 		
-		this.salvarNaLista();
-	}
-	
-	public static void escrever() {
-	
-		OutputStream os = null;
-		try {
-			os = new FileOutputStream(new File("grupos.txt"));
-			
-			for(Grupo g : grupos) {
-				String s = g.id + "%" + g.nome + "\n";
-				os.write(s.getBytes());
-			}
-		
-			os.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public static void carregar() {
-		
-		Scanner scanner = null;
-		File file = new File("grupos.txt");
-				
-		try {
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			scanner = new Scanner(file);
-			
-			while(scanner.hasNextLine()) {
-				String s = scanner.nextLine();
-				
-				String[] partes = s.split("%");
-				
-				new Grupo(Integer.parseInt(partes[0].trim()), partes[1]);
-			}
-			
-			scanner.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (DadoIncompletoException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void salvarNaLista() {
-		boolean canSave = true;
-		
-		for(Grupo g : grupos) {
-			if (this.nome.toLowerCase().equals(g.nome.toLowerCase())) {
-				canSave = false;
-			}
-			if (this.id == g.id) {
-				this.id += 1;
-			}
-		}
-		
-		if (canSave) {			
-			grupos.add(this);
-		} else {
-			System.out.println("Este elemento já existe na base!");
-		}
-	}
-	
-	private static Grupo obterDaLista(String nome) {
-		
-		for (Grupo g : Grupo.grupos) {
-			if (nome.equals(g.nome)) {
-				return g;
-			}
-		}
-		
-		return null;
-	}
-	
-	public static void editarGrupo(Integer id, String novoNome) {
-		
-		for (Grupo g: grupos) {
-			if( g.id == id) {
-				g.nome = novoNome;
-				break;
-			}
-		}
-		
-	}
-	
-	public static Grupo obterGrupo(String nome) throws DadoIncompletoException {
-		
-		Grupo g = obterDaLista(nome);
-		if (g == null) {
-			g = new Grupo(1, nome);
-		}
-		
-		return g;
 	}
 
 	private void verificaDados(Integer id, String nome) throws DadoIncompletoException {
@@ -186,6 +80,10 @@ public class Grupo {
 	
 	public static List<Grupo> getAllGrupos() {
 		return grupos;
+	}
+	
+	public static void addGrupo(Grupo grupo) {
+		Grupo.grupos.add(grupo);
 	}
 	
 }

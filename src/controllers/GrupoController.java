@@ -1,6 +1,11 @@
 package controllers;
 
 import java.util.List;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,10 +37,108 @@ public class GrupoController {
 		return nomeGrupos; 
 	}
 	
-	//TODO SALVAR NO BANCO
-	public void salvarGrupo(String nome) throws DadoIncompletoException{
-		//Grupo grupo = new Grupo(1, nome);
-
+	///////////////////////////////////
+	
+	public static void carregar() {
+		
+		Scanner scanner = null;
+		File file = new File("grupos.txt");
+				
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			scanner = new Scanner(file);
+			
+			while(scanner.hasNextLine()) {
+				String s = scanner.nextLine();
+				
+				String[] partes = s.split("%");
+				
+				new Grupo(Integer.parseInt(partes[0].trim()), partes[1]);
+			}
+			
+			scanner.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (DadoIncompletoException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	public static void escrever() {
+		
+		OutputStream os = null;
+		try {
+			os = new FileOutputStream(new File("grupos.txt"));
+			
+			for(Grupo g : Grupo.getAllGrupos()) {
+				String s = g.getId() + "%" + g.getNome() + "\n";
+				os.write(s.getBytes());
+			}
+		
+			os.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static Grupo obterDaLista(String nome) {
+		
+		for (Grupo g : Grupo.getAllGrupos()) {
+			if (nome.equals(g.getNome())) {
+				return g;
+			}
+		}
+		
+		return null;
+	}
+	
+	public static Grupo obterGrupo(String nome) throws DadoIncompletoException {
+		
+		Grupo g = obterDaLista(nome);
+		if (g == null) {
+			g = new Grupo(1, nome);
+			salvarNaLista(g);
+		}
+		
+		return g;
+	}
+	
+	public static void editarGrupo(Integer id, String novoNome) throws DadoIncompletoException {
+		
+		for (Grupo g: Grupo.getAllGrupos()) {
+			if( g.getId() == id) {
+				g.setNome(novoNome);
+				break;
+			}
+		}
+		
+	}
+	
+	public static void salvarNaLista(Grupo grupo) throws DadoIncompletoException {
+		boolean canSave = true;
+		
+		for(Grupo g : Grupo.getAllGrupos()) {
+			if (grupo.getNome().toLowerCase().equals(g.getNome().toLowerCase())) {
+				canSave = false;
+			}
+			if (grupo.getId() == g.getId()) {
+				grupo.setId(grupo.getId() + 1);
+			}
+		}
+		
+		if (canSave) {		
+			Grupo.addGrupo(grupo);
+		} else {
+			System.out.println("Este elemento já existe na base!");
+		}
+	}
+	
 }
 

@@ -1,12 +1,7 @@
 package models;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import exceptions.DadoIncompletoException;
 
@@ -25,86 +20,7 @@ public class Alimento {
 		this.medida = medida;
 		this.grupo = grupo;
 		
-		this.salvarNaLista();
-	}
-	
-	
-	private void salvarNaLista() {
-		boolean canSave = true;
-		
-		for(Alimento a : alimentos) {
-			if (this.nome.toLowerCase().equals(a.nome.toLowerCase())) {
-				canSave = false;
-			}
-		}
-		
-		if (canSave) {			
-			alimentos.add(this);
-			this.grupo.addAlimento(this);
-		} else {
-			System.out.println("Este elemento já existe na base!");
-		}
-		
-	}
-
-
-	public static void escrever() {
-		
-		OutputStream os = null;
-		try {
-			os = new FileOutputStream(new File("alimentos.txt"));
-			
-			for(Alimento a : alimentos) {
-				String nomeGrupo = a.getGrupo().getNome();
-				
-				String s = a.nome + "%" + a.medida + "%" + nomeGrupo + "\n";
-				os.write(s.getBytes());
-			}
-		
-			os.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-				
-	}
-	
-	public static void carregar() {
-		
-		Scanner scanner = null;
-		File file = new File("alimentos.txt");
-		try {
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			
-			scanner = new Scanner(file);
-			
-			while(scanner.hasNextLine()) {
-				String s = scanner.nextLine();
-				
-				String[] partes = s.split("%");
-				
-				Grupo g = Grupo.obterGrupo(partes[2]);
-				
-				new Alimento(partes[0], partes[1], g);
-				
-			}
-			
-			scanner.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (DadoIncompletoException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
-		Alimento a = new Alimento(nome, medida, grupo);
-		return a;
+		this.grupo.addAlimento(this);
 	}
 	
 	private void verificaDados(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
@@ -166,6 +82,10 @@ public class Alimento {
 	
 	public static List<Alimento> getAllAlimentos() {
 		return alimentos;
+	}
+	
+	public static void addAlimento(Alimento alimento) {
+		Alimento.alimentos.add(alimento);
 	}
 
 }

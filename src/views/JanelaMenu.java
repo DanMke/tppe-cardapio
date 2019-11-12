@@ -131,12 +131,12 @@ public class JanelaMenu extends JFrame implements ActionListener {
 				"Digite o nome do grupo",  "Criar Grupo", JOptionPane.PLAIN_MESSAGE);
 		
 		if (nomeGrupo != null) { // checa se apertou cancelar			
-			try {
-				grupoController.salvarGrupo(nomeGrupo);
-			} catch (DadoIncompletoException e) {
-				JOptionPane.showMessageDialog(null, 
-						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
-			}
+//			try {
+//				grupoController.salvarGrupo(nomeGrupo);
+//			} catch (DadoIncompletoException e) {
+//				JOptionPane.showMessageDialog(null, 
+//						"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
+//			}
 		}		
 	}
 	

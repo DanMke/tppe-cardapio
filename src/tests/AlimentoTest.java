@@ -17,12 +17,12 @@ public class AlimentoTest {
 	@Test
 	public void testInstanciacaoAlimento() throws DadoIncompletoException {
 
-		Grupo grupo = Grupo.obterGrupo("Carboidratos");
+		Grupo grupo = new Grupo(1, "Carboidratos");
 		
 		String nome = "Arroz";
 		String medida = "gramas";
 		
-		a = Alimento.obterAlimento(nome, medida, grupo);
+		a = new Alimento(nome, medida, grupo);
 		assertNotNull(a);
 		assertEquals(nome, a.getNome());
 		assertEquals(medida, a.getMedida());
@@ -32,7 +32,7 @@ public class AlimentoTest {
 	@Test (expected = DadoIncompletoException.class)
 	public void testInstanciacaoAlimentoDadoIncompleto() throws DadoIncompletoException {
 		
-		a = Alimento.obterAlimento(null, null, null);
+		a = new Alimento(null, null, null);
 	}
 	
 	@Rule

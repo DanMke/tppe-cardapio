@@ -19,7 +19,8 @@ public class GrupoTest {
 		//Integer id = 1;
 		String nome = "Carboidratos";
 		
-		g = Grupo.obterGrupo(nome);
+		g = new Grupo(1, nome);
+		// g = Grupo.obterGrupo(nome);
 		assertNotNull(g);
 		// assertEquals(id, g.getId());
 		assertEquals(nome, g.getNome());
@@ -29,7 +30,8 @@ public class GrupoTest {
 	public void testInstanciacaoGrupoDadoIncompleto() throws DadoIncompletoException {
 		String nome = "";
 		
-		g = Grupo.obterGrupo(nome);
+		// g = Grupo.obterGrupo(nome);
+		g = new Grupo(1, nome);
 	}
 	
 	@Rule
