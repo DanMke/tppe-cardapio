@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import exceptions.DadoIncompletoException;
-import junit.framework.Assert;
 import models.Alimento;
 import models.Grupo;
 import controllers.AlimentoController;

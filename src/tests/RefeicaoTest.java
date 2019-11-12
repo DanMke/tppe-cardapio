@@ -2,7 +2,6 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +31,10 @@ public class RefeicaoTest {
 			// Do nothing
 		}
 				
-		Refeicao refeicao = new Refeicao(nome, grupos, alimentos);
+		Refeicao refeicao = new Refeicao(nome, alimentos);
 		
 		assertEquals(nome, refeicao.getNome());
 		assertEquals(alimentos, refeicao.getAlimentos());
-		assertEquals(grupos, refeicao.getGrupos());
 		
 		final String novoNome = "Jantar";
 		refeicao.setNome(novoNome);
@@ -55,11 +53,7 @@ public class RefeicaoTest {
 			// Do nothing
 		}
 		
-		refeicao.setGrupos(novoGrupos);
 		refeicao.setAlimentos(novoAlimentos);
-		
-		assertEquals(novoGrupos, refeicao.getGrupos());
-		assertNotEquals(grupos, refeicao.getGrupos());
 		
 		assertEquals(novoAlimentos, refeicao.getAlimentos());
 		assertNotEquals(alimentos, refeicao.getAlimentos());

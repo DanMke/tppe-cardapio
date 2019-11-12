@@ -31,9 +31,6 @@ public class AlimentoTest {
 	
 	@Test (expected = DadoIncompletoException.class)
 	public void testInstanciacaoAlimentoDadoIncompleto() throws DadoIncompletoException {
-//		String nome = "Arroz";
-//		String medida = "gramas";
-//		Grupo grupo = null;
 		
 		a = Alimento.obterAlimento(null, null, null);
 	}

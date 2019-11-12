@@ -33,7 +33,7 @@ public class Alimento {
 		boolean canSave = true;
 		
 		for(Alimento a : alimentos) {
-			if (this.nome.equals(a.nome)) {
+			if (this.nome.toLowerCase().equals(a.nome.toLowerCase())) {
 				canSave = false;
 			}
 		}

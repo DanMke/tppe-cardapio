@@ -2,8 +2,6 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.awt.List;
-
 import org.junit.Test;
 
 import controllers.GrupoController;

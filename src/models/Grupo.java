@@ -85,7 +85,7 @@ public class Grupo {
 		boolean canSave = true;
 		
 		for(Grupo g : grupos) {
-			if (this.nome.equals(g.nome)) {
+			if (this.nome.toLowerCase().equals(g.nome.toLowerCase())) {
 				canSave = false;
 			}
 			if (this.id == g.id) {
