@@ -65,7 +65,7 @@ public class Grupo {
 			while(scanner.hasNextLine()) {
 				String s = scanner.nextLine();
 				
-				var partes = s.split("%");
+				String[] partes = s.split("%");
 				
 				new Grupo(Integer.parseInt(partes[0].trim()), partes[1]);
 			}

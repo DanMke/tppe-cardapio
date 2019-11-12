@@ -83,7 +83,7 @@ public class Alimento {
 			while(scanner.hasNextLine()) {
 				String s = scanner.nextLine();
 				
-				var partes = s.split("%");
+				String[] partes = s.split("%");
 				
 				Grupo g = Grupo.obterGrupo(partes[2]);
 				
