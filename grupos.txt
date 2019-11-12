@@ -1,8 +1,8 @@
-1%Carboidratos
-2%Verduras e Legumes
-3%Frutas
-4%Leite e derivados
-5%Carnes e Ovos
-6%Leguminosas e oleaginosas
-7%Óleos e Gorduras
-8%Açúcares e Doces
+Carboidratos
+Verduras e Legumes
+Frutas
+Leite e derivados
+Carnes e Ovos
+Leguminosas e oleaginosas
+Óleos e Gorduras
+Açúcares e Doces

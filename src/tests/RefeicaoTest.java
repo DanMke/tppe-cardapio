@@ -24,7 +24,7 @@ public class RefeicaoTest {
 		List<Alimento> alimentos = new ArrayList<Alimento>();
 		
 		try {
-			grupos.add(new Grupo(1, "Carboidratos"));
+			grupos.add(new Grupo("Carboidratos"));
 			alimentos.add(new Alimento("Pão", "gramas", grupos.get(0)));
 				
 		} catch (DadoIncompletoException e) {
@@ -46,7 +46,7 @@ public class RefeicaoTest {
 		List<Alimento> novoAlimentos = new ArrayList<Alimento>();
 		
 		try {
-			novoGrupos.add(new Grupo(1, "Carnes"));
+			novoGrupos.add(new Grupo("Carnes"));
 			novoAlimentos.add(new Alimento("Frango", "gramas", novoGrupos.get(0)));
 				
 		} catch (DadoIncompletoException e) {

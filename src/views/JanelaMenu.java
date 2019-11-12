@@ -115,7 +115,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 			// TODO substituir pelo alimento que deverá ser editado
 			// TODO remover try/catch
 			try {
-				editarAlimento(new Alimento("Qualquer", "g" , new Grupo(7, "Grupo alt")));
+				editarAlimento(new Alimento("Qualquer", "g" , new Grupo("Grupo alt")));
 			} catch (DadoIncompletoException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

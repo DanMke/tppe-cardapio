@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import exceptions.DadoIncompletoException;
@@ -11,7 +11,7 @@ public class Alimento {
 	private String medida;
 	private Grupo grupo;
 	
-	private static List<Alimento> alimentos = new ArrayList<>();
+	private static List<Alimento> alimentos = new LinkedList<Alimento>();
 	
 	public Alimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
 		verificaDados(nome, medida, grupo);
@@ -19,6 +19,10 @@ public class Alimento {
 		this.nome = nome;
 		this.medida = medida;
 		this.grupo = grupo;
+		
+		if (alimentos == null){
+			alimentos = new LinkedList<Alimento>();
+		}
 		
 		this.grupo.addAlimento(this);
 	}

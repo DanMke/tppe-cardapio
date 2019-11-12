@@ -19,7 +19,7 @@ public class GrupoTest {
 		//Integer id = 1;
 		String nome = "Carboidratos";
 		
-		g = new Grupo(1, nome);
+		g = new Grupo(nome);
 		// g = Grupo.obterGrupo(nome);
 		assertNotNull(g);
 		// assertEquals(id, g.getId());
@@ -31,37 +31,21 @@ public class GrupoTest {
 		String nome = "";
 		
 		// g = Grupo.obterGrupo(nome);
-		g = new Grupo(1, nome);
+		g = new Grupo(nome);
 	}
 	
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
 	
     @Test
-    public void testDadoVazioIdGrupo() throws DadoIncompletoException {
-
-    	Integer id = 1;
-    	String nome = "Verde"; 
-    	
-    	thrown.expect(DadoIncompletoException.class);
-        thrown.expectMessage("Campo id não pode ser vazio");
-    	
-    	Grupo grupo = new Grupo(id, nome);
-    	
-        grupo.setId(null);
-        
-    }
-    
-    @Test
     public void testDadoVazioNomeGrupo() throws DadoIncompletoException {
 
-    	Integer id = 2;
     	String nome = "Carboidrato"; 
     	
     	thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo nome não pode ser vazio");
     	
-    	Grupo grupo = new Grupo(id, nome);
+    	Grupo grupo = new Grupo(nome);
     	
         grupo.setNome("");
         

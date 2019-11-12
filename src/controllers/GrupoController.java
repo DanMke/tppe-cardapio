@@ -53,9 +53,7 @@ public class GrupoController {
 			while(scanner.hasNextLine()) {
 				String s = scanner.nextLine();
 				
-				String[] partes = s.split("%");
-				
-				new Grupo(Integer.parseInt(partes[0].trim()), partes[1]);
+				new Grupo(s);
 			}
 			
 			scanner.close();
@@ -76,7 +74,7 @@ public class GrupoController {
 			os = new FileOutputStream(new File("grupos.txt"));
 			
 			for(Grupo g : Grupo.getAllGrupos()) {
-				String s = g.getId() + "%" + g.getNome() + "\n";
+				String s = g.getNome() + "\n";
 				os.write(s.getBytes());
 			}
 		
@@ -103,17 +101,17 @@ public class GrupoController {
 		
 		Grupo g = obterDaLista(nome);
 		if (g == null) {
-			g = new Grupo(1, nome);
+			g = new Grupo(nome);
 			salvarNaLista(g);
 		}
 		
 		return g;
 	}
 	
-	public static void editarGrupo(Integer id, String novoNome) throws DadoIncompletoException {
+	public static void editarGrupo(String nome, String novoNome) throws DadoIncompletoException {
 		
 		for (Grupo g: Grupo.getAllGrupos()) {
-			if( g.getId() == id) {
+			if(g.getNome() == nome) {
 				g.setNome(novoNome);
 				break;
 			}
@@ -127,9 +125,6 @@ public class GrupoController {
 		for(Grupo g : Grupo.getAllGrupos()) {
 			if (grupo.getNome().toLowerCase().equals(g.getNome().toLowerCase())) {
 				canSave = false;
-			}
-			if (grupo.getId() == g.getId()) {
-				grupo.setId(grupo.getId() + 1);
 			}
 		}
 		

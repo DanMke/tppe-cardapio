@@ -34,7 +34,7 @@ public class CardapioTest {
 		List<Alimento> alimentos = new ArrayList<Alimento>();
 		
 		try {
-			grupos.add(new Grupo(1, total_grupos.toString()));
+			grupos.add(new Grupo(total_grupos.toString()));
 			total_grupos++;
 			
 			alimentos.add(new Alimento(
@@ -65,14 +65,14 @@ public class CardapioTest {
 	
 	@Test
 	public void testeMontarCardapio() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
-		Grupo g1 = new Grupo(1, "Carboidratos");
-		Grupo g2 = new Grupo(1, "Verduras e Legumes");
-		Grupo g3 = new Grupo(1, "Frutas");
-		Grupo g4 = new Grupo(1, "Leite e derivados");
-		Grupo g5 = new Grupo(1, "Carnes e Ovos");
-		Grupo g6 = new Grupo(1, "Leguminosas e oleaginosas");
-		Grupo g7 = new Grupo(1, "Óleos e Gorduras");
-		Grupo g8 = new Grupo(1, "Açúcares e Doces");
+		Grupo g1 = new Grupo("Carboidratos");
+		Grupo g2 = new Grupo("Verduras e Legumes");
+		Grupo g3 = new Grupo("Frutas");
+		Grupo g4 = new Grupo("Leite e derivados");
+		Grupo g5 = new Grupo("Carnes e Ovos");
+		Grupo g6 = new Grupo("Leguminosas e oleaginosas");
+		Grupo g7 = new Grupo("Óleos e Gorduras");
+		Grupo g8 = new Grupo("Açúcares e Doces");
 		
 		new Alimento("Pão", "gramas", g1);
 		new Alimento("Arroz", "gramas", g1);
@@ -123,14 +123,14 @@ public class CardapioTest {
 	
 	@Test
 	public void testeMontarCardapio2() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
-		Grupo g1 = new Grupo(1, "Carboidratos");
-		Grupo g2 = new Grupo(1, "Verduras e Legumes");
-		Grupo g3 = new Grupo(1, "Frutas");
-		Grupo g4 = new Grupo(1, "Leite e derivados");
-		Grupo g5 = new Grupo(1, "Carnes e Ovos");
-		Grupo g6 = new Grupo(1, "Leguminosas e oleaginosas");
-		Grupo g7 = new Grupo(1, "Óleos e Gorduras");
-		Grupo g8 = new Grupo(1, "Açúcares e Doces");
+		Grupo g1 = new Grupo("Carboidratos");
+		Grupo g2 = new Grupo("Verduras e Legumes");
+		Grupo g3 = new Grupo("Frutas");
+		Grupo g4 = new Grupo("Leite e derivados");
+		Grupo g5 = new Grupo("Carnes e Ovos");
+		Grupo g6 = new Grupo("Leguminosas e oleaginosas");
+		Grupo g7 = new Grupo("Óleos e Gorduras");
+		Grupo g8 = new Grupo("Açúcares e Doces");
 		
 		new Alimento("Pão", "gramas", g1);
 		new Alimento("Arroz", "gramas", g1);
@@ -181,14 +181,14 @@ public class CardapioTest {
 	
 	@Test
 	public void testeMontarCardapio3() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
-		Grupo g1 = new Grupo(1, "Carboidratos");
-		Grupo g2 = new Grupo(1, "Verduras e Legumes");
-		Grupo g3 = new Grupo(1, "Frutas");
-		Grupo g4 = new Grupo(1, "Leite e derivados");
-		Grupo g5 = new Grupo(1, "Carnes e Ovos");
-		Grupo g6 = new Grupo(1, "Leguminosas e oleaginosas");
-		Grupo g7 = new Grupo(1, "Óleos e Gorduras");
-		Grupo g8 = new Grupo(1, "Açúcares e Doces");
+		Grupo g1 = new Grupo("Carboidratos");
+		Grupo g2 = new Grupo("Verduras e Legumes");
+		Grupo g3 = new Grupo("Frutas");
+		Grupo g4 = new Grupo("Leite e derivados");
+		Grupo g5 = new Grupo("Carnes e Ovos");
+		Grupo g6 = new Grupo("Leguminosas e oleaginosas");
+		Grupo g7 = new Grupo("Óleos e Gorduras");
+		Grupo g8 = new Grupo("Açúcares e Doces");
 		
 		new Alimento("Pão", "gramas", g1);
 		new Alimento("Arroz", "gramas", g1);
@@ -239,9 +239,9 @@ public class CardapioTest {
 	
 	@Test (expected = CardapioInvalidoException.class)
 	public void testeExcecaoCardapio() throws DadoIncompletoException, CardapioInvalidoException, CardapioOverflowException {
-		Grupo g1 = new Grupo(1, "Carboidratos");
-		Grupo g2 = new Grupo(1, "Verduras e Legumes");
-		Grupo g3 = new Grupo(1, "Frutas");
+		Grupo g1 = new Grupo("Carboidratos");
+		Grupo g2 = new Grupo("Verduras e Legumes");
+		Grupo g3 = new Grupo("Frutas");
 		
 		new Alimento("Pão", "gramas", g1);
 		new Alimento("Arroz", "gramas", g1);

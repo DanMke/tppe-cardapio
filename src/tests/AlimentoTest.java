@@ -17,7 +17,7 @@ public class AlimentoTest {
 	@Test
 	public void testInstanciacaoAlimento() throws DadoIncompletoException {
 
-		Grupo grupo = new Grupo(1, "Carboidratos");
+		Grupo grupo = new Grupo("Carboidratos");
 		
 		String nome = "Arroz";
 		String medida = "gramas";
@@ -43,7 +43,7 @@ public class AlimentoTest {
 
     	String nome = "Joberto";
     	String medida = "25 gramas";
-    	Grupo grupo = new Grupo(1, "Verde");
+    	Grupo grupo = new Grupo("Verde");
     	
         thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo nome não pode ser vazio");
@@ -60,7 +60,7 @@ public class AlimentoTest {
 
     	String nome = "Alana";
     	String medida = "80 gramas";
-    	Grupo grupo = new Grupo(2, "Carboidrato");
+    	Grupo grupo = new Grupo("Carboidrato");
     	
         thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo medida não pode ser vazio");
@@ -77,7 +77,7 @@ public class AlimentoTest {
 
     	String nome = "Melanie";
     	String medida = "100 gramas";
-    	Grupo grupo = new Grupo(2, "Carboidrato");
+    	Grupo grupo = new Grupo("Carboidrato");
     	
         thrown.expect(DadoIncompletoException.class);
         thrown.expectMessage("Campo grupo não pode ser vazio");
