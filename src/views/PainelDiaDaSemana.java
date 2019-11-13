@@ -20,24 +20,23 @@ import exceptions.DadoIncompletoException;
 import models.Grupo;
 
 import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class PainelDiaDaSemana extends JPanel implements ActionListener {
+public class PainelDiaDaSemana extends JPanel {
 
 	private JLabel lblDia;
-	private JPanel panelAdicionar;
-	private FlowLayout flowLayout;
 	@SuppressWarnings("rawtypes")
-	private JComboBox comboBox;
-	private JButton btnAdicionar;
-	private JPanel panelAdicionados;
-	private List<Grupo> listaGrupos;
-
+	private JComboBox grupo1;
+	@SuppressWarnings("rawtypes")
+	private JComboBox grupo2;
+	@SuppressWarnings("rawtypes")
+	private JComboBox grupo3;
+	
 	public PainelDiaDaSemana(String dia) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBounds(100, 100, 450, 300);
-		setSize(new Dimension(300, 400));
 		
 		criarComponentes(dia);
 		adicionarComponentes();
@@ -47,50 +46,33 @@ public class PainelDiaDaSemana extends JPanel implements ActionListener {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void criarComponentes(String dia) {
 		lblDia = new JLabel(dia);
-		lblDia.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblDia.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		listaGrupos = new ArrayList();
-		
-		panelAdicionar = new JPanel();
-		flowLayout = (FlowLayout) panelAdicionar.getLayout();
-//		flowLayout.setVgap(10);
-//		flowLayout.setHgap(50);
-		panelAdicionar.setMaximumSize(new Dimension(300, 300));
-		
-		comboBox = new JComboBox(GrupoController.getNomesGrupos());
-		
-		btnAdicionar = new JButton("+");
-		btnAdicionar.addActionListener(this);
-		panelAdicionados = new JPanel();
-		
+		grupo1 = new JComboBox(GrupoController.getNomesGrupos());
+		grupo2 = new JComboBox(GrupoController.getNomesGrupos());
+		grupo3 = new JComboBox(GrupoController.getNomesGrupos());
+
 	}
 
 	private void adicionarComponentes() {
+		setLayout(new GridLayout(5, 1, 15, 10));
 		add(lblDia);
-		add(panelAdicionar);
-		panelAdicionar.add(comboBox);
-		panelAdicionar.add(btnAdicionar);		
-		add(panelAdicionados);
-	}
+		add(grupo1);
+		add(grupo2);
+		add(grupo3);
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		String nomeGrupo = comboBox.getSelectedItem().toString();
-		try {
-			listaGrupos.add(GrupoController.obterGrupo(nomeGrupo));
-		} catch (DadoIncompletoException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		panelAdicionados.add(new JLabel(nomeGrupo));
-		panelAdicionados.validate();
-		panelAdicionados.repaint();		
 	}
 
 	public List<Grupo> getListaGrupos() {
-		return listaGrupos;
+		
+		List<Grupo> grupos = new ArrayList<>();
+		
+		grupos.add(GrupoController.obterDaLista(grupo1.getSelectedItem().toString()));
+		grupos.add(GrupoController.obterDaLista(grupo2.getSelectedItem().toString()));
+		grupos.add(GrupoController.obterDaLista(grupo3.getSelectedItem().toString()));
+		
+		return grupos;
+		
 	}	
 
 }

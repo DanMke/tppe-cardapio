@@ -28,12 +28,6 @@ public class GrupoController {
 		
 		Arrays.sort(nomeGrupos);
 		
-		for(String g : nomeGrupos) {
-			System.out.println(g);
-		}
-		System.out.print("\n\n\n\n");
-		
-//		 return nomeGrupostoArray(new type[collection.size()]);
 		return nomeGrupos; 
 	}
 	

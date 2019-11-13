@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -99,13 +100,16 @@ public class JanelaMontarCardapio extends JFrame implements ActionListener{
 		
 		try {
 			CardapioController.montarCardapio(getListaGrupo());
-		} catch (CardapioInvalidoException | CardapioOverflowException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			frameJanelaCardapio = new JanelaCardapio();
+			frameJanelaCardapio.setVisible(true);
+			this.setVisible(false);
+		} catch (CardapioInvalidoException e1) {
+			JOptionPane.showMessageDialog(null, 
+					"Não foi possível montar o cardápio", "Erro", JOptionPane.ERROR_MESSAGE);
+		} catch (CardapioOverflowException e1) {
+			JOptionPane.showMessageDialog(null, 
+					"Dias estourados (7)", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		frameJanelaCardapio = new JanelaCardapio();
-		frameJanelaCardapio.setVisible(true);
-		this.setVisible(false);
+	
 	}
 }
