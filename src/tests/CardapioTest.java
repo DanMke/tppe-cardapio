@@ -24,7 +24,7 @@ public class CardapioTest {
 	private static Integer total_alimentos = 0;
 	private static Integer total_grupos = 0;
 	
-	Refeicao obterRefeicao() {
+	Refeicao obterRefeicao() throws DadoIncompletoException {
 		
 		Random r = new Random();
 		
@@ -33,26 +33,21 @@ public class CardapioTest {
 		List<Grupo> grupos = new ArrayList<Grupo>();
 		List<Alimento> alimentos = new ArrayList<Alimento>();
 		
-		try {
-			grupos.add(new Grupo(total_grupos.toString()));
-			total_grupos++;
-			
-			alimentos.add(new Alimento(
-					total_alimentos.toString(),
-					total_alimentos.toString(), 
-					grupos.get(grupos.size() - 1
-			)));
-			total_alimentos++;
-			
-		} catch (DadoIncompletoException e) {
-			// Do nothing
-		}
+		grupos.add(new Grupo(total_grupos.toString()));
+		total_grupos++;
+		
+		alimentos.add(new Alimento(
+				total_alimentos.toString(),
+				total_alimentos.toString(), 
+				grupos.get(grupos.size() - 1
+		)));
+		total_alimentos++;
 				
 		return new Refeicao(nome, alimentos);
 	}
 
 	@Test
-	public void testeInstanciacaoCardapio() {
+	public void testeInstanciacaoCardapio() throws DadoIncompletoException {
 		
 		List<Refeicao> refeicoes = new ArrayList<Refeicao>();
 		for (int i = 0; i < 12; i++) {
@@ -266,7 +261,7 @@ public class CardapioTest {
 	}
 	
 	@Test (expected = CardapioOverflowException.class)
-	public void testeUltrapassarMaximoCardapios() throws CardapioOverflowException {
+	public void testeUltrapassarMaximoCardapios() throws CardapioOverflowException, DadoIncompletoException {
 		
 
 		List<Refeicao> refeicoes = new ArrayList<Refeicao>();

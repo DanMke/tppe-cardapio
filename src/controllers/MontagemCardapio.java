@@ -8,6 +8,7 @@ import java.util.Map;
 
 import exceptions.CardapioInvalidoException;
 import exceptions.CardapioOverflowException;
+import exceptions.DadoIncompletoException;
 import models.Alimento;
 import models.Cardapio;
 import models.Grupo;
@@ -30,7 +31,7 @@ public class MontagemCardapio {
 		
 	}
 	
-	void computar(List<List<Grupo>> gruposInput) throws CardapioInvalidoException, CardapioOverflowException {
+	void computar(List<List<Grupo>> gruposInput) throws CardapioInvalidoException, CardapioOverflowException, DadoIncompletoException {
 		Cardapio.clearCardapioSemana();
 		
 		alimentosDiaAnterior = new ArrayList<Alimento>();

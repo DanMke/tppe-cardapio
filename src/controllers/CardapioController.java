@@ -8,6 +8,7 @@ import java.util.List;
 
 import exceptions.CardapioInvalidoException;
 import exceptions.CardapioOverflowException;
+import exceptions.DadoIncompletoException;
 import models.Alimento;
 import models.Cardapio;
 import models.Grupo;
@@ -17,7 +18,7 @@ public class CardapioController {
 
 	public final static int NUM_REFEICOES_DIA = 2;
 	
-	public static void montarCardapio(List<List<Grupo>> gruposInput) throws CardapioInvalidoException, CardapioOverflowException {
+	public static void montarCardapio(List<List<Grupo>> gruposInput) throws CardapioInvalidoException, CardapioOverflowException, DadoIncompletoException {
 		new MontagemCardapio().computar(gruposInput);
 	}
 	
