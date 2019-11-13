@@ -14,45 +14,55 @@ public class Cardapio {
 	
 	private static List<Cardapio> cardapioSemana = new ArrayList<>();	
 	
-	private String day;
+	private String dia;
 	private List<Refeicao> refeicoesDia = new ArrayList<>();
 	
-	public Cardapio(String day, List<Refeicao> refeicoesDia) throws DadoIncompletoException {
-		verificaDados(day, refeicoesDia);
-		this.day = day;
+	public Cardapio(String dia, List<Refeicao> refeicoesDia) throws DadoIncompletoException {
+		verificaDados(dia, refeicoesDia);
+		this.dia = dia;
 		this.refeicoesDia = refeicoesDia;
 	}
 	
-	private void verificaDados(String nome, List<Refeicao> refeicoesDia) throws DadoIncompletoException {
-		if (nome == null || nome.equals("") || refeicoesDia == null) {
-			StringBuilder builder = criaMensagemErro(nome, refeicoesDia);
+	private void verificaDados(String dia, List<Refeicao> refeicoesDia) throws DadoIncompletoException {
+		if (dia == null || dia.equals("") || refeicoesDia == null) {
+			StringBuilder builder = criaMensagemErro(dia, refeicoesDia);
 			throw new DadoIncompletoException(builder.toString());
 		}
 	}
 
-	private StringBuilder criaMensagemErro(String nome, List<Refeicao> refeicoesDia) {
+	private StringBuilder criaMensagemErro(String dia, List<Refeicao> refeicoesDia) {
 		StringBuilder builder = new StringBuilder(); 
 		
-		builder.append("Dados informados para Grupo estão incompletos:\n");
-		builder.append(nome == null || nome == "" ? "Nome: " + nome + "\n" : "");
+		builder.append("Dados informados para Cardapio estão incompletos:\n");
+		builder.append(dia == null || dia == "" ? "Dia: " + dia + "\n" : "");
 		builder.append(refeicoesDia == null ? "Refeicoes: " + refeicoesDia + "\n" : "");
 		
 		return builder;
 	}
 	
-	public String getDay() {
-		return day;
+	public String getDia() {
+		return dia;
 	}
 
-	public void setDay(String day) {
-		this.day = day;
+	public void setDia(String dia) throws DadoIncompletoException {
+		
+		if(dia == null || dia == "") {
+			throw new DadoIncompletoException("Campo dia não pode ser vazio");
+		}
+		
+		this.dia = dia;
 	}
 
 	public List<Refeicao> getRefeicoesDia() {
 		return refeicoesDia;
 	}
 
-	public void setRefeicoesDia(List<Refeicao> refeicoesDia) {
+	public void setRefeicoesDia(List<Refeicao> refeicoesDia) throws DadoIncompletoException {
+		
+		if(refeicoesDia == null) {
+			throw new DadoIncompletoException("Campo refeicoesDia não pode ser vazio");
+		}
+		
 		this.refeicoesDia = refeicoesDia;
 	}
 

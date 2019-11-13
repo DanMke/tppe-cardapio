@@ -30,7 +30,7 @@ public class CardapioController {
 			os = new FileOutputStream(new File("cardapio.txt"));
 			
 			for (Cardapio cardapio : Cardapio.getCardapioSemana()) {
-				s = cardapio.getDay() + "\n";
+				s = cardapio.getDia() + "\n";
 				os.write(s.getBytes());
 				for (Refeicao refeicao : cardapio.getRefeicoesDia()) {
 					s = refeicao.getNome() + "\n";
@@ -66,7 +66,7 @@ public class CardapioController {
 	
 	public static List<Alimento> getAlimentosRefeicaoDia(String refeicao, String dia) {
 		for (Cardapio cardapio : Cardapio.getCardapioSemana()) {
-			if(cardapio.getDay().equals(dia)) {
+			if(cardapio.getDia().equals(dia)) {
 				for (Refeicao ref : cardapio.getRefeicoesDia()) {
 					if (ref.getNome().equals(refeicao)) 
 						return ref.getAlimentos();

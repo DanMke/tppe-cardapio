@@ -25,7 +25,7 @@ public class Refeicao {
 	private StringBuilder criaMensagemErro(String nome, List<Alimento> alimentos) {
 		StringBuilder builder = new StringBuilder(); 
 		
-		builder.append("Dados informados para Grupo estão incompletos:\n");
+		builder.append("Dados informados para Refeição estão incompletos:\n");
 		builder.append(nome == null || nome == "" ? "Nome: " + nome + "\n" : "");
 		builder.append(alimentos == null ? "Alimentos: " + alimentos + "\n" : "");
 		

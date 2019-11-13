@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import controllers.CardapioController;
 import exceptions.CardapioInvalidoException;
 import exceptions.CardapioOverflowException;
+import exceptions.DadoIncompletoException;
 import models.Grupo;
 
 @SuppressWarnings("serial")
@@ -109,6 +110,9 @@ public class JanelaMontarCardapio extends JFrame implements ActionListener{
 		} catch (CardapioOverflowException e1) {
 			JOptionPane.showMessageDialog(null, 
 					"Dias estourados (7)", "Erro", JOptionPane.ERROR_MESSAGE);
+		} catch (DadoIncompletoException e1) {
+			JOptionPane.showMessageDialog(null, 
+					"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	
 	}
