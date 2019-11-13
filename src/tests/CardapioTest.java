@@ -59,7 +59,7 @@ public class CardapioTest {
 			refeicoes.add(obterRefeicao());
 		}
 		
-		Cardapio c = new Cardapio(refeicoes);
+		Cardapio c = new Cardapio("Segunda", refeicoes);
 		assertEquals(refeicoes, c.getRefeicoesDia());
 	}
 	
@@ -244,8 +244,6 @@ public class CardapioTest {
 		Grupo g3 = new Grupo("Frutas");
 		
 		new Alimento("Pão", "gramas", g1);
-		new Alimento("Arroz", "gramas", g1);
-		new Alimento("Macarrão", "gramas", g1);
 		new Alimento("Abóbora", "gramas", g2);
 		new Alimento("Couve", "gramas", g2);
 		new Alimento("Couve-flor", "gramas", g2);
@@ -275,12 +273,12 @@ public class CardapioTest {
 		refeicoes.add(obterRefeicao());
 		
 		for (int i = 0; i < Cardapio.DIAS_DA_SEMANA.size(); i++) {
-			Cardapio.addCardapioDia(new Cardapio(refeicoes));
+			Cardapio.addCardapioDia(new Cardapio(Cardapio.DIAS_DA_SEMANA.get(i), refeicoes));
 		}
 		
 		assertEquals(Cardapio.getCardapioSemana().size(), Cardapio.DIAS_DA_SEMANA.size());
 		
-		Cardapio.addCardapioDia(new Cardapio(refeicoes));
+		Cardapio.addCardapioDia(new Cardapio("DiaInexistente", refeicoes));
 		
 	}
 	

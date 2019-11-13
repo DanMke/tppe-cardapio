@@ -16,27 +16,27 @@ import models.Grupo;
 public class AlimentoController {
 
 	public static void salvarAlimento(String nome, String medida, String nomeGrupo) throws DadoIncompletoException{
-		Grupo grupo = new Grupo(nomeGrupo);
+		Grupo grupo = GrupoController.obterGrupo(nomeGrupo);
 		Alimento alimento = new Alimento(nome, medida, grupo);
 		salvarNaLista(alimento);
 	}
 	
-	public static Alimento editarAlimento(String nomeAtual, String nome, String medida, String nomeGrupo) throws  DadoIncompletoException{
+	public static Alimento editarAlimento(EditarAlimentoParameter parameterObject) throws  DadoIncompletoException{
 		
 		Grupo novoGrupo = null;
 		Alimento novoAlimento = null;
 		
 		for(Grupo g: Grupo.getAllGrupos()) {
-			if(g.getNome() == nomeGrupo) {
+			if(g.getNome() == parameterObject.nomeGrupo) {
 				novoGrupo = g;
 				break;
 			}
 		}
 		
 		for (Alimento al: Alimento.getAllAlimentos()) {
-			if(al.getNome() == nomeAtual) {
-				al.setNome(nome);
-				al.setMedida(medida);
+			if(al.getNome() == parameterObject.nomeAtual) {
+				al.setNome(parameterObject.nome);
+				al.setMedida(parameterObject.medida);
 				al.setGrupo(novoGrupo);
 				novoAlimento = al;
 				break;
@@ -130,17 +130,15 @@ public class AlimentoController {
 		
 		return null;
 	}
-//	
-//	public static Alimento obterGrupo(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
-//		
-//		Alimento a = obterDaLista(nome, medida, grupo);
-//		if (a == null) {
-//			a = new Alimento(nome, medida, grupo);
-//			salvarNaLista(a);
-//		}
-//		
-//		return a;
-//	}
+	
+	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
+		
+		Alimento a = obterDaLista(nome);
+		if (a == null) {
+			salvarAlimento(nome, medida, grupo.getNome());
+		}
+		return a;
+	}
 //	
 //	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
 //		Alimento a = new Alimento(nome, medida, grupo);

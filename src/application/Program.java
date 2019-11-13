@@ -133,6 +133,8 @@ public class Program {
 		CardapioController.montarCardapio(list);
 		CardapioController.imprimeCardapio();
 		
+		CardapioController.escrever();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

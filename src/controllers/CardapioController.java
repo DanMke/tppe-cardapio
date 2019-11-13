@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -14,7 +18,7 @@ import models.Grupo;
 import models.Refeicao;
 
 public class CardapioController {
-	public static final int NUM_REFEICOES_DIA = 3;
+	public static final int NUM_REFEICOES_DIA = 2;
 	
 	public static void montarCardapio(List<List<Grupo>> gruposInput) throws CardapioInvalidoException, CardapioOverflowException {
 		
@@ -75,10 +79,38 @@ public class CardapioController {
 			alimentosDiaAnterior.clear();
 			alimentosDiaAnterior.addAll(alimentosDiaAtual);
 			
-			Cardapio.addCardapioDia(new Cardapio(refeicoesDia));			
+			Cardapio.addCardapioDia(new Cardapio(Cardapio.DIAS_DA_SEMANA.get(i), refeicoesDia));			
 		}	
 	}
 	
+	public static void escrever() {
+		
+		OutputStream os = null;
+		String s = "";
+		try {
+			os = new FileOutputStream(new File("cardapio.txt"));
+			
+			for (Cardapio cardapio : Cardapio.getCardapioSemana()) {
+				s = cardapio.getDay() + "\n";
+				os.write(s.getBytes());
+				for (Refeicao refeicao : cardapio.getRefeicoesDia()) {
+					s = refeicao.getNome() + "\n";
+					os.write(s.getBytes());
+					for (Alimento a : refeicao.getAlimentos()) {
+						s = a.getNome() + "%" + a.getMedida() + "%" + a.getGrupo().getNome() + "\n";
+						os.write(s.getBytes());
+					}
+				}
+				
+			}
+		
+			os.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+	}
 	
 	public static void imprimeCardapio() {
 		for (Cardapio cardapio : Cardapio.getCardapioSemana()) {

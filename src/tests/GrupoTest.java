@@ -15,14 +15,10 @@ public class GrupoTest {
 	
 	@Test
 	public void testInstanciacaoGrupo() throws DadoIncompletoException {
-		// removendo id, pois ela é gerada automaticamente em caso de conflito
-		//Integer id = 1;
 		String nome = "Carboidratos";
 		
 		g = new Grupo(nome);
-		// g = Grupo.obterGrupo(nome);
 		assertNotNull(g);
-		// assertEquals(id, g.getId());
 		assertEquals(nome, g.getNome());
 	}
 	
@@ -30,7 +26,6 @@ public class GrupoTest {
 	public void testInstanciacaoGrupoDadoIncompleto() throws DadoIncompletoException {
 		String nome = "";
 		
-		// g = Grupo.obterGrupo(nome);
 		g = new Grupo(nome);
 	}
 	

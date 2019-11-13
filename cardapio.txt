@@ -1,0 +1,63 @@
+Domingo
+Almoço
+Arroz%gramas%Carboidratos
+Abóbora%gramas%Verduras e Legumes
+Maçã%gramas%Frutas
+Jantar
+Arroz%gramas%Carboidratos
+Alface%gramas%Verduras e Legumes
+Maçã%gramas%Frutas
+Segunda
+Almoço
+Manteiga%gramas%Leite e derivados
+Carne moída%gramas%Carnes e Ovos
+Lentilha%gramas%Leguminosas e oleaginosas
+Jantar
+Requeijão%gramas%Leite e derivados
+Carne de Sol%gramas%Carnes e Ovos
+Ervilha%gramas%Leguminosas e oleaginosas
+Terça
+Almoço
+Azeites%gramas%Óleos e Gorduras
+Açúcar de cana%gramas%Açúcares e Doces
+Arroz%gramas%Carboidratos
+Jantar
+Azeites%gramas%Óleos e Gorduras
+Açúcar mascavo%gramas%Açúcares e Doces
+Pão%gramas%Carboidratos
+Quarta
+Almoço
+Iogurte%gramas%Leite e derivados
+Cupim%gramas%Carnes e Ovos
+Ervilha%gramas%Leguminosas e oleaginosas
+Jantar
+Queijo%gramas%Leite e derivados
+Carne de Sol%gramas%Carnes e Ovos
+Feijão%gramas%Leguminosas e oleaginosas
+Quinta
+Almoço
+Arroz%gramas%Carboidratos
+Alface%gramas%Verduras e Legumes
+Abacaxi%gramas%Frutas
+Jantar
+Pão%gramas%Carboidratos
+Abóbora%gramas%Verduras e Legumes
+Abacaxi%gramas%Frutas
+Sexta
+Almoço
+Queijo%gramas%Leite e derivados
+Carne de Sol%gramas%Carnes e Ovos
+Ervilha%gramas%Leguminosas e oleaginosas
+Jantar
+Requeijão%gramas%Leite e derivados
+Ovo%gramas%Carnes e Ovos
+Lentilha%gramas%Leguminosas e oleaginosas
+Sábado
+Almoço
+Azeites%gramas%Óleos e Gorduras
+Açúcar mascavo%gramas%Açúcares e Doces
+Pão%gramas%Carboidratos
+Jantar
+Óleo de milho%gramas%Óleos e Gorduras
+Açúcar de cana%gramas%Açúcares e Doces
+Macarrão%gramas%Carboidratos

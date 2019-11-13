@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controllers.AlimentoController;
+import controllers.EditarAlimentoParameter;
 import controllers.GrupoController;
 import exceptions.DadoIncompletoException;
 import models.Alimento;
@@ -168,10 +169,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 			
 			try {
 				AlimentoController.editarAlimento(
-						janela.getNomeAtual(), 
-						janela.getNome(), 
-						janela.getMedida(), 
-						janela.getNomeGrupo()
+						new EditarAlimentoParameter(janela.getNomeAtual(), janela.getNome(), janela.getMedida(), janela.getNomeGrupo())
 				);
 			} catch (DadoIncompletoException e) {
 				JOptionPane.showMessageDialog(null, 
