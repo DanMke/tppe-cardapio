@@ -22,8 +22,6 @@ import java.awt.Dimension;
 
 @SuppressWarnings("serial")
 public class JanelaMenu extends JFrame implements ActionListener {
-	private AlimentoController alimentoController;
-	
 	private JPanel contentPane;
 	private JButton criarGrupo;
 	private JButton editarGrupo;
@@ -37,8 +35,6 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		setLocationRelativeTo(null);
-		
-		alimentoController = new AlimentoController();
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,14 +92,7 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		} else if (source.getText() == "Criar alimento") {
 			criarAlimento();
 		} else if (source.getText() == "Editar alimento") {
-			// TODO substituir pelo alimento que deverá ser editado
-			// TODO remover try/catch
-			try {
-				editarAlimento(new Alimento("Qualquer", "g" , new Grupo("Grupo alt")));
-			} catch (DadoIncompletoException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			editarAlimento();
 		} else {
 			montarCardapio();
 		}
@@ -149,11 +138,13 @@ public class JanelaMenu extends JFrame implements ActionListener {
 	            JOptionPane.OK_CANCEL_OPTION
 	            );		
 		
-		if (resultado == JOptionPane.OK_OPTION) {
-			System.out.println("Ok");			
+		if (resultado == JOptionPane.OK_OPTION) {			
 			try {
-				System.out.println(janela.getNome().getText() + janela.getMedida().getText() + janela.getGrupos().getSelectedItem().toString());
-				alimentoController.salvarAlimento(janela.getNome().getText(), janela.getMedida().getText(), janela.getGrupos().getSelectedItem().toString());
+				AlimentoController.salvarAlimento(
+						janela.getNome(), 
+						janela.getMedida(), 
+						janela.getNomeGrupo()
+				);
 			} catch (DadoIncompletoException e) {
 				JOptionPane.showMessageDialog(null, 
 					"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -162,11 +153,8 @@ public class JanelaMenu extends JFrame implements ActionListener {
 		
 	}
 	
-	private void editarAlimento(Alimento alimento) {
+	private void editarAlimento() {
 		JanelaAlimento janela = new JanelaAlimento(false);
-		
-		janela.getNome().setText(alimento.getNome());
-		janela.getMedida().setText(alimento.getMedida());
 		
 		int resultado = JOptionPane.showConfirmDialog(				
 							null, 
@@ -179,8 +167,12 @@ public class JanelaMenu extends JFrame implements ActionListener {
 			System.out.println("Ok");			
 			
 			try {
-				System.out.println(janela.getNome().getText() + janela.getMedida().getText() + janela.getGrupos().getSelectedItem().toString());
-				alimentoController.editarAlimento(alimento.getNome(), janela.getNome().getText(), janela.getMedida().getText(), janela.getGrupos().getSelectedItem().toString());
+				AlimentoController.editarAlimento(
+						janela.getNomeAtual(), 
+						janela.getNome(), 
+						janela.getMedida(), 
+						janela.getNomeGrupo()
+				);
 			} catch (DadoIncompletoException e) {
 				JOptionPane.showMessageDialog(null, 
 					"Dados incompletos", "Erro", JOptionPane.ERROR_MESSAGE);

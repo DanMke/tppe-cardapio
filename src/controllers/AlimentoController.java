@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import exceptions.DadoIncompletoException;
@@ -12,14 +15,13 @@ import models.Grupo;
 
 public class AlimentoController {
 
-	//TODO SALVAR NO BANCO
-	public void salvarAlimento(String nome, String medida, String nomeGrupo) throws DadoIncompletoException{
-		// TODO Buscar grupo relacionado a esse nome no BD
+	public static void salvarAlimento(String nome, String medida, String nomeGrupo) throws DadoIncompletoException{
 		Grupo grupo = new Grupo(nomeGrupo);
-		new Alimento(nome, medida, grupo);
+		Alimento alimento = new Alimento(nome, medida, grupo);
+		salvarNaLista(alimento);
 	}
 	
-	public Alimento editarAlimento(String nomeAtual, String nome, String medida, String nomeGrupo) throws  DadoIncompletoException{
+	public static Alimento editarAlimento(String nomeAtual, String nome, String medida, String nomeGrupo) throws  DadoIncompletoException{
 		
 		Grupo novoGrupo = null;
 		Alimento novoAlimento = null;
@@ -118,30 +120,45 @@ public class AlimentoController {
 		}
 	}
 	
-	public static Alimento obterDaLista(String nome, String medida, Grupo grupo) {
+	public static Alimento obterDaLista(String nome) {
 		
 		for (Alimento a : Alimento.getAllAlimentos()) {
-			if (nome.equals(a.getNome()) && medida.equals(a.getMedida()) && grupo.getNome().equals(a.getGrupo().getNome())) {
+			if (nome.equals(a.getNome())) {
 				return a;
 			}
 		}
 		
 		return null;
 	}
+//	
+//	public static Alimento obterGrupo(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
+//		
+//		Alimento a = obterDaLista(nome, medida, grupo);
+//		if (a == null) {
+//			a = new Alimento(nome, medida, grupo);
+//			salvarNaLista(a);
+//		}
+//		
+//		return a;
+//	}
+//	
+//	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
+//		Alimento a = new Alimento(nome, medida, grupo);
+//		return a;
+//	}
 	
-	public static Alimento obterGrupo(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
+	public static String[] getNomesAlimentos() {
+		List<String> nomeAlimentosAux = new ArrayList<String>();
 		
-		Alimento a = obterDaLista(nome, medida, grupo);
-		if (a == null) {
-			a = new Alimento(nome, medida, grupo);
-			salvarNaLista(a);
+		for(int i = 0; i < Alimento.getAllAlimentos().size(); i++) {
+			nomeAlimentosAux.add(Alimento.getAllAlimentos().get(i).getNome());
 		}
 		
-		return a;
-	}
-	
-	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
-		Alimento a = new Alimento(nome, medida, grupo);
-		return a;
+		String[] nomeAlimentos = new String[nomeAlimentosAux.size()];
+		nomeAlimentos = nomeAlimentosAux.toArray(nomeAlimentos);
+		
+		Arrays.sort(nomeAlimentos);
+		
+		return nomeAlimentos; 
 	}
 }
