@@ -20,10 +20,9 @@ public class GrupoControllerTest {
 		GrupoController.salvarNaLista(g2);
 		GrupoController.salvarNaLista(g3);
 		
-		GrupoController grupoController = new GrupoController();
 		String[] nome = {"Carboidratos", "Carnes e Ovos", "Verde"};
 		
-		assertEquals(grupoController.getNomesGrupos(), nome);
+		assertEquals(GrupoController.getNomesGrupos(), nome);
 	}
 	
 	

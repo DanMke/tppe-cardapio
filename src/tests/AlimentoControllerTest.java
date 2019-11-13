@@ -23,11 +23,9 @@ public class AlimentoControllerTest {
 		Grupo gp2 = new Grupo("Carnes e Ovos");
 		GrupoController.salvarNaLista(gp2);
 		
-		AlimentoController controller = new AlimentoController();
-		
 		Alimento al1 = new Alimento(nome, medida, gp);
 		AlimentoController.salvarNaLista(al1);
-		Alimento al2 = controller.editarAlimento(nome, novoNome, medida, gp2.getNome());
+		Alimento al2 = AlimentoController.editarAlimento(nome, novoNome, medida, gp2.getNome());
 		
 		assertEquals(novoNome, al2.getNome());
 		assertEquals(medida, al2.getMedida());
@@ -44,12 +42,11 @@ public class AlimentoControllerTest {
 		String novaMedida = "10 g";
 		Grupo gp = new Grupo("Vegetais");
 		Grupo gp2 = new Grupo("Carboidratos");
-		
-		AlimentoController controller = new AlimentoController();
+		GrupoController.salvarNaLista(gp2);
 		
 		Alimento al1 = new Alimento(nome, medida, gp);
 		AlimentoController.salvarNaLista(al1);
-		Alimento al2 = controller.editarAlimento(nome, novoNome, novaMedida, gp2.getNome());
+		Alimento al2 = AlimentoController.editarAlimento(nome, novoNome, novaMedida, gp2.getNome());
 		
 		assertEquals(novoNome, al2.getNome());
 		assertEquals(novaMedida, al2.getMedida());
