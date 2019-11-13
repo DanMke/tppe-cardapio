@@ -46,8 +46,6 @@ public class AlimentoController {
 		return novoAlimento;
 	}
 	
-	//////////////////////////////////////////////////////
-	
 	public static void salvarNaLista(Alimento alimento) {
 		boolean canSave = true;
 		
@@ -59,8 +57,6 @@ public class AlimentoController {
 		
 		if (canSave) {			
 			Alimento.addAlimento(alimento);
-		} else {
-			System.out.println("Este elemento já existe na base!");
 		}
 		
 	}
@@ -139,11 +135,6 @@ public class AlimentoController {
 		}
 		return a;
 	}
-//	
-//	public static Alimento obterAlimento(String nome, String medida, Grupo grupo) throws DadoIncompletoException {
-//		Alimento a = new Alimento(nome, medida, grupo);
-//		return a;
-//	}
 	
 	public static String[] getNomesAlimentos() {
 		List<String> nomeAlimentosAux = new ArrayList<String>();

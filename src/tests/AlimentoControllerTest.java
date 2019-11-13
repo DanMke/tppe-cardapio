@@ -14,6 +14,7 @@ import exceptions.DadoIncompletoException;
 import models.Alimento;
 import models.Grupo;
 import controllers.AlimentoController;
+import controllers.EditarAlimentoParameter;
 import controllers.GrupoController;
 
 @RunWith(Parameterized.class)
@@ -29,8 +30,6 @@ public class AlimentoControllerTest {
     }
     
     private Grupo gp;
-    private Grupo gp2;
-    private Alimento al;
     private String newNomeGrupo;
     private String newMedida;
     private String newNomeAlimento;
@@ -38,20 +37,19 @@ public class AlimentoControllerTest {
     
     
     public AlimentoControllerTest(String oldNomeGrupo, String oldNomeAlimento, String oldMedida, String newNomeGrupo, String newNomeAlimento, String newMedida ) throws DadoIncompletoException {
-    	this.gp = new Grupo(oldNomeGrupo);
-    	GrupoController.salvarNaLista(gp);
     	
-    	this.gp2 = new Grupo(newNomeGrupo);
-    	GrupoController.salvarNaLista(gp2);
+    	GrupoController.salvarGrupo(oldNomeGrupo);
+    	this.gp = GrupoController.obterGrupo(oldNomeGrupo);
     	
-    	this.al = new Alimento(oldNomeAlimento, oldMedida, gp);
-    	AlimentoController.salvarNaLista(al);
+    	GrupoController.salvarGrupo(newNomeGrupo);
+    	
+    	AlimentoController.salvarAlimento(oldNomeAlimento, oldMedida, gp.getNome());
     	
     	this.newNomeAlimento = newNomeAlimento;
     	this.newMedida = newMedida;
     	this.newNomeGrupo = newNomeGrupo;
     	
-    	this.newAlimento = AlimentoController.editarAlimento(oldNomeAlimento, newNomeAlimento, newMedida, newNomeGrupo);
+    	this.newAlimento = AlimentoController.editarAlimento(new EditarAlimentoParameter(oldNomeAlimento, newNomeAlimento, newMedida, newNomeGrupo));
     }
     
     @Test

@@ -37,8 +37,6 @@ public class GrupoController {
 		return nomeGrupos; 
 	}
 	
-	///////////////////////////////////
-	
 	public static void carregar() {
 		
 		Scanner scanner = null;
@@ -130,8 +128,6 @@ public class GrupoController {
 		
 		if (canSave) {		
 			Grupo.addGrupo(grupo);
-		} else {
-			System.out.println("Este elemento já existe na base!");
 		}
 	}
 	
