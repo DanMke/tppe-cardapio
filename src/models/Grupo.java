@@ -35,7 +35,7 @@ public class Grupo {
 		StringBuilder builder = new StringBuilder(); 
 		
 		builder.append("Dados informados para Grupo estão incompletos:\n");
-		builder.append(nome == null ? "Nome: " + nome + "\n" : "");
+		builder.append(nome == null || nome == "" ? "Nome: " + nome + "\n" : "");
 		
 		return builder;
 	}

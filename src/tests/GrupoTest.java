@@ -2,47 +2,68 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import exceptions.DadoIncompletoException;
 import models.Grupo;
 
+@RunWith(Parameterized.class)
 public class GrupoTest {
 	
-	Grupo g;
+	private String nome;
+	private Class<? extends Exception> excecaoEsperada;
 	
-	@Test
-	public void testInstanciacaoGrupo() throws DadoIncompletoException {
-		String nome = "Carboidratos";
-		
-		g = new Grupo(nome);
-		assertNotNull(g);
-		assertEquals(nome, g.getNome());
+	public GrupoTest(String nome, Class<? extends Exception> excecaoEsperada) {
+		this.nome = nome;
+		this.excecaoEsperada = excecaoEsperada;
 	}
 	
-	@Test (expected = DadoIncompletoException.class)
-	public void testInstanciacaoGrupoDadoIncompleto() throws DadoIncompletoException {
-		String nome = "";
-		
-		g = new Grupo(nome);
-	}
-	
-	@Rule
+	@Parameters
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][] {     
+                 { "Carboidratos", null},
+                 { "Vegetais", null},
+                 { "", DadoIncompletoException.class},
+                 { null, DadoIncompletoException.class}
+           });
+    }
+    
+    @Rule
     public ExpectedException thrown = ExpectedException.none();
-	
-    @Test
-    public void testDadoVazioNomeGrupo() throws DadoIncompletoException {
 
-    	String nome = "Carboidrato"; 
+    @Test
+    public void test() throws DadoIncompletoException {
+    	Grupo grupo;
     	
-    	thrown.expect(DadoIncompletoException.class);
-        thrown.expectMessage("Campo nome não pode ser vazio");
+    	if (excecaoEsperada != null) {
+            thrown.expect(excecaoEsperada);
+        }
+    	grupo = new Grupo(nome);
     	
-    	Grupo grupo = new Grupo(nome);
+    	assertNotNull(grupo);
+    	assertEquals(nome, grupo.getNome());
     	
-        grupo.setNome("");
+    }
+    
+    @Test
+    public void testSet() throws DadoIncompletoException {
+    	Grupo grupo = new Grupo("Carboidratos");
+    	
+        if (excecaoEsperada != null) {
+            thrown.expect(excecaoEsperada);
+        }
+        
+        grupo.setNome(nome);
+        
+        assertNotNull(grupo);
+        assertEquals(nome, grupo.getNome());
         
     }
 

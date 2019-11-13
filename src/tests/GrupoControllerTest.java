@@ -9,7 +9,6 @@ import exceptions.DadoIncompletoException;
 
 public class GrupoControllerTest {
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testRecuperarGrupos() throws DadoIncompletoException {
 		GrupoController.salvarGrupo("Carboidratos");
@@ -18,7 +17,7 @@ public class GrupoControllerTest {
 		
 		String[] nome = {"Carboidratos", "Carnes e Ovos", "Verde"};
 		
-		assertEquals(GrupoController.getNomesGrupos(), nome);
+		assertArrayEquals(GrupoController.getNomesGrupos(), nome);
 	}
 	
 	
