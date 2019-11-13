@@ -46,6 +46,7 @@ public class PainelDiaDaSemana extends JPanel {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void criarComponentes(String dia) {
 		lblDia = new JLabel(dia);
+		lblDia.setForeground(Color.RED);
 		lblDia.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		grupo1 = new JComboBox(GrupoController.getNomesGrupos());

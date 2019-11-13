@@ -62,4 +62,16 @@ public class CardapioController {
 			System.out.println("###");
 		}
 	}
+	
+	public static List<Alimento> getAlimentosRefeicaoDia(String refeicao, String dia) {
+		for (Cardapio cardapio : Cardapio.getCardapioSemana()) {
+			if(cardapio.getDay().equals(dia)) {
+				for (Refeicao ref : cardapio.getRefeicoesDia()) {
+					if (ref.getNome().equals(refeicao)) 
+						return ref.getAlimentos();
+				}
+			}
+		}
+		return null;
+	}
 }
