@@ -4,10 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JLabel;
 import java.awt.Component;
@@ -18,18 +18,20 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class PainelDiaDaSemana extends JPanel implements ActionListener {
 
-	private JLabel lblSegunda;
+	private JLabel lblDia;
 	private JPanel panelAdicionar;
 	private FlowLayout flowLayout;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private JButton btnAdicionar;
 	private JPanel panelAdicionados;
+	private List<String> listaGrupos;
 
 	public PainelDiaDaSemana(String dia) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBounds(100, 100, 450, 300);setSize(new Dimension(300, 400));
+		setBounds(100, 100, 450, 300);
+		setSize(new Dimension(300, 400));
 		
 		criarComponentes(dia);
 		adicionarComponentes();
@@ -38,8 +40,8 @@ public class PainelDiaDaSemana extends JPanel implements ActionListener {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void criarComponentes(String dia) {
-		lblSegunda = new JLabel(dia);
-		lblSegunda.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblDia = new JLabel(dia);
+		lblDia.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		panelAdicionar = new JPanel();
 		flowLayout = (FlowLayout) panelAdicionar.getLayout();
@@ -47,17 +49,18 @@ public class PainelDiaDaSemana extends JPanel implements ActionListener {
 		flowLayout.setHgap(50);
 		panelAdicionar.setMaximumSize(new Dimension(300, 300));
 		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Grupo 1", "Grupo 2"}));
+		// TODO fazer método que retorne uma String[] com todos os nomes de grupos
+		String[] grupos = {"Carboidrato", "Proteína"};
+		comboBox = new JComboBox(grupos);
 		
-		btnAdicionar = new JButton("Adicionar");
+		btnAdicionar = new JButton("+");
 		btnAdicionar.addActionListener(this);
 		panelAdicionados = new JPanel();
 		
 	}
 
 	private void adicionarComponentes() {
-		add(lblSegunda);
+		add(lblDia);
 		add(panelAdicionar);
 		panelAdicionar.add(comboBox);
 		panelAdicionar.add(btnAdicionar);		
@@ -66,10 +69,12 @@ public class PainelDiaDaSemana extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		panelAdicionados.add(new JLabel("Grupo"));
+		// TODO criar método que envie nome String e retorne o grupo
+		String nomeGrupo = comboBox.getSelectedItem().toString();
+		//listaGrupos.add(Grupo.getGrupo(nomeGrupo));
+		panelAdicionados.add(new JLabel(nomeGrupo));
 		panelAdicionados.validate();
-		panelAdicionados.repaint();
-		
+		panelAdicionados.repaint();		
 	}
 
 }
