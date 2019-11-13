@@ -1,11 +1,14 @@
 package views;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import models.Cardapio;
 
 public class JanelaCardapio extends JFrame {
 	private JPanel contentPane;
@@ -18,8 +21,11 @@ public class JanelaCardapio extends JFrame {
 	private PainelDiaDaSemanaCardapio sexta;
 	private PainelDiaDaSemanaCardapio sabado;
 	private PainelDiaDaSemanaCardapio domingo;
+	private List<Cardapio> cardapio;
 	
     public JanelaCardapio(){
+    	cardapio = Cardapio.getCardapioSemana();
+    	
     	setExtendedState(MAXIMIZED_BOTH);
     	setBounds(100, 100, 450, 300);
     	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -44,15 +50,19 @@ public class JanelaCardapio extends JFrame {
 	}
 
 	private void criarComponentes() {
+		domingo = new PainelDiaDaSemanaCardapio("Domingo");
 		segunda = new PainelDiaDaSemanaCardapio("Segunda");
 		terca = new PainelDiaDaSemanaCardapio("Terça");
 		quarta = new PainelDiaDaSemanaCardapio("Quarta");
 		quinta = new PainelDiaDaSemanaCardapio("Quinta");
 		sexta = new PainelDiaDaSemanaCardapio("Sexta");
 		sabado = new PainelDiaDaSemanaCardapio("Sábado");
-		domingo = new PainelDiaDaSemanaCardapio("Domingo");
 		
-		//TODO Excluir
+		adicionarElementosCardapio();
+	}
+
+	private void adicionarElementosCardapio() {
+		// TODO chamar metodos para adicionar lista no panel de refeição aqui
 		ArrayList<String> alimentos = new ArrayList<String>();
 		alimentos.add("Batata");
 		alimentos.add("Arroz");

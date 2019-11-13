@@ -2,12 +2,19 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controllers.CardapioController;
+import exceptions.CardapioInvalidoException;
+import exceptions.CardapioOverflowException;
+import models.Grupo;
 
 @SuppressWarnings("serial")
 public class JanelaMontarCardapio extends JFrame implements ActionListener{
@@ -72,11 +79,31 @@ public class JanelaMontarCardapio extends JFrame implements ActionListener{
 		segundaLinha.add(sexta);
 		segundaLinha.add(sabado);
 		segundaLinha.add(domingo);
+	}
+	
+	private List<List<Grupo>> getListaGrupo() {
+		List<List<Grupo>> semana = new ArrayList<List<Grupo>>();
+		semana.add(domingo.getListaGrupos());
+		semana.add(segunda.getListaGrupos());
+		semana.add(terca.getListaGrupos());
+		semana.add(quarta.getListaGrupos());
+		semana.add(quinta.getListaGrupos());
+		semana.add(sexta.getListaGrupos());
+		semana.add(sabado.getListaGrupos());
 		
+		return semana;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		try {
+			CardapioController.montarCardapio(getListaGrupo());
+		} catch (CardapioInvalidoException | CardapioOverflowException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		frameJanelaCardapio = new JanelaCardapio();
 		frameJanelaCardapio.setVisible(true);
 		this.setVisible(false);

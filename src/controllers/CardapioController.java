@@ -14,7 +14,7 @@ import models.Grupo;
 import models.Refeicao;
 
 public class CardapioController {
-	
+
 	public final static int NUM_REFEICOES_DIA = 2;
 	
 	public static void montarCardapio(List<List<Grupo>> gruposInput) throws CardapioInvalidoException, CardapioOverflowException {

@@ -89,4 +89,8 @@ public class PainelDiaDaSemana extends JPanel implements ActionListener {
 		panelAdicionados.repaint();		
 	}
 
+	public List<Grupo> getListaGrupos() {
+		return listaGrupos;
+	}	
+
 }
