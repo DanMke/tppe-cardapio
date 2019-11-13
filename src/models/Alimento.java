@@ -51,7 +51,7 @@ public class Alimento {
 
 	public void setNome(String nome) throws DadoIncompletoException {
 		
-		if(nome.equals("") || nome == null) {
+		if(nome == null || nome.equals("") ) {
 			throw new DadoIncompletoException("Campo nome não pode ser vazio");
 		}
 		
@@ -64,7 +64,7 @@ public class Alimento {
 	
 	public void setMedida(String medida) throws DadoIncompletoException {
 		
-		if(medida.equals("") || medida == null) {
+		if(medida == null || medida.equals("")) {
 			throw new DadoIncompletoException("Campo medida não pode ser vazio");
 		}
 		

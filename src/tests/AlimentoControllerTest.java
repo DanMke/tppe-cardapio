@@ -19,7 +19,12 @@ import controllers.GrupoController;
 
 @RunWith(Parameterized.class)
 public class AlimentoControllerTest {
-	
+	private Grupo gp;
+    private String newNomeGrupo;
+    private String newMedida;
+    private String newNomeAlimento;
+    private Alimento newAlimento;
+    
 	@Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {     
@@ -28,14 +33,7 @@ public class AlimentoControllerTest {
                  { "Verde", "Couve", "20 gramas", "Carnes e Ovos", "Costela", "7 gramas"}
            });
     }
-    
-    private Grupo gp;
-    private String newNomeGrupo;
-    private String newMedida;
-    private String newNomeAlimento;
-    private Alimento newAlimento;
-    
-    
+      
     public AlimentoControllerTest(String oldNomeGrupo, String oldNomeAlimento, String oldMedida, String newNomeGrupo, String newNomeAlimento, String newMedida ) throws DadoIncompletoException {
     	
     	GrupoController.salvarGrupo(oldNomeGrupo);

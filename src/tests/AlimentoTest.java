@@ -2,92 +2,86 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import exceptions.DadoIncompletoException;
 import models.Alimento;
 import models.Grupo;
 
+@RunWith(Parameterized.class)
 public class AlimentoTest {
 
-	Alimento a;
+	private String nome;
+	private String medida;
+	private String grupo;
+	private Class<? extends Exception> excecaoEsperada;
 	
-	@Test
-	public void testInstanciacaoAlimento() throws DadoIncompletoException {
-
-		Grupo grupo = new Grupo("Carboidratos");
-		
-		String nome = "Arroz";
-		String medida = "gramas";
-		
-		a = new Alimento(nome, medida, grupo);
-		assertNotNull(a);
-		assertEquals(nome, a.getNome());
-		assertEquals(medida, a.getMedida());
-		assertEquals(grupo, a.getGrupo());
+	@Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {     
+                 { "Brocolis", "10 porcoes", "Vegetais", null},
+                 { "Macarrão", "10 gramas", null , DadoIncompletoException.class},
+                 { "Lombo", null, "Carnes e Ovos", DadoIncompletoException.class},
+                 { null , "1kg", "Vegetais", DadoIncompletoException.class}
+           });
+    }
+    
+    public AlimentoTest(
+    		String nome, String medida, String grupo, 
+    		Class<? extends Exception> excecaoEsperada) {
+		this.nome = nome;
+		this.medida = medida;
+		this.grupo = grupo;
+		this.excecaoEsperada = excecaoEsperada;
 	}
-	
-	@Test (expected = DadoIncompletoException.class)
-	public void testInstanciacaoAlimentoDadoIncompleto() throws DadoIncompletoException {
-		
-		a = new Alimento(null, null, null);
-	}
-	
-	@Rule
+    
+    @Rule
     public ExpectedException thrown = ExpectedException.none();
-	
+    
     @Test
-    public void testDadoVazioNomeAlimento() throws DadoIncompletoException {
-
-    	String nome = "Joberto";
-    	String medida = "25 gramas";
-    	Grupo grupo = new Grupo("Verde");
+    public void testConstrutor() throws DadoIncompletoException {
+    	Alimento a;
     	
-        thrown.expect(DadoIncompletoException.class);
-        thrown.expectMessage("Campo nome não pode ser vazio");
-
-       
-        Alimento al = new Alimento(nome, medida, grupo);
-
-        al.setNome("");
-        
-    }
-   
-    @Test
-    public void testDadoVazioMedidaAlimento() throws DadoIncompletoException {
-
-    	String nome = "Alana";
-    	String medida = "80 gramas";
-    	Grupo grupo = new Grupo("Carboidrato");
     	
-        thrown.expect(DadoIncompletoException.class);
-        thrown.expectMessage("Campo medida não pode ser vazio");
-
+        if (excecaoEsperada != null) {
+            thrown.expect(excecaoEsperada);
+        }
         
-        Alimento al = new Alimento(nome, medida, grupo);
+        if (grupo != null) 
+    		a = new Alimento(nome, medida, new Grupo(grupo));
+    	else 
+    		a = new Alimento(nome, medida, null);
 
-        al.setMedida("");
-       
+        assertNotNull(a);
+
     }
     
     @Test
-    public void testDadoVazioGrupoAlimento() throws DadoIncompletoException {
-
-    	String nome = "Melanie";
-    	String medida = "100 gramas";
-    	Grupo grupo = new Grupo("Carboidrato");
+    public void testSet() throws DadoIncompletoException {
+    	Alimento a = new Alimento("teste", "teste", new Grupo("teste"));
     	
-        thrown.expect(DadoIncompletoException.class);
-        thrown.expectMessage("Campo grupo não pode ser vazio");
-
+        if (excecaoEsperada != null) {
+            thrown.expect(excecaoEsperada);
+        }
         
-        Alimento al = new Alimento(nome, medida, grupo);
+        if (grupo != null) 
+        	a.setGrupo(new Grupo(grupo));
+        else
+        	a.setGrupo(null);
+        
+		a.setMedida(medida);
+		a.setNome(nome);
+		
+        assertNotNull(a);
 
-        al.setGrupo(null);
-       
     }
-    
 
 }
